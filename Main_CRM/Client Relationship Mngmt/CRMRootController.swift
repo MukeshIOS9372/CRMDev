@@ -11,19 +11,27 @@ struct CRMRootController: View {
     @State private var selectedTab: Int = 0
     
     var body: some View {
-       
         VStack(alignment: .center) {
             ClientRelationProfileHeader()
-            // Scrollable Tab Bar
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 16 * iPadMultiplier) {
-                    ForEach(0..<5) { index in
-                        TabBarButton(title: tabTitle(for: index), isActive: selectedTab == index) {
-                            selectedTab = index
+            
+            // Scrollable Tab Bar with Centering on Selection
+            ScrollViewReader { scrollViewProxy in
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 16 * iPadMultiplier) {
+                        ForEach(0..<7, id: \.self) { index in
+                            TabBarButton(title: tabTitle(for: index), isActive: selectedTab == index) {
+                                selectedTab = index
+                                
+                                // Scroll to the selected tab and center it
+                                withAnimation {
+                                    scrollViewProxy.scrollTo(index, anchor: .center)
+                                }
+                            }
+                            .id(index) // Set a unique ID for each tab
                         }
                     }
+                    .padding(.horizontal, 12 * iPadMultiplier)
                 }
-                .padding(.horizontal, 12 * iPadMultiplier)
             }
             
             // Tab Content based on selected tab
@@ -39,7 +47,9 @@ struct CRMRootController: View {
         case 1: return "Estimates"
         case 2: return "Invoices"
         case 3: return "Jobs"
-        case 4: return "Contacts"
+        case 4: return "Work Orders"
+        case 5: return "Requests"
+        case 6: return "Post Inspection"
         default: return ""
         }
     }
@@ -51,7 +61,6 @@ struct TabBarButton: View {
     var action: () -> Void
 
     var body: some View {
-        
         Button(action: action) {
             VStack {
                 Text(title)
@@ -73,17 +82,14 @@ struct TabBarButton: View {
     }
 }
 
-
 struct TabContent: View {
     var selectedTab: Int
 
     var body: some View {
-        
         VStack {
             switch selectedTab {
             case 0:
                 Text("Timeline Content")
-//                    .font(Font.custom(FontBook.Semibold.rawValue, size: 14 * iPadMultiplier))
             case 1:
                 EstimateTabComponent()
             case 2:
@@ -91,8 +97,11 @@ struct TabContent: View {
             case 3:
                 JobsTabsComponent()
             case 4:
-                Text("Contacts Content")
-                    .font(Font.custom(FontBook.Semibold.rawValue, size: 14 * iPadMultiplier))
+                WOTabsComponent()
+            case 5:
+                RequestsTabsComponent()
+            case 6:
+                PITabsComponent()
             default:
                 Text("Unknown Tab")
             }
@@ -100,7 +109,6 @@ struct TabContent: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
-
 
 struct CRERootContentView: View {
     var body: some View {

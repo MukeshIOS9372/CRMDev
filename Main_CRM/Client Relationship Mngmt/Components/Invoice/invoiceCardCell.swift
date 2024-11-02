@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct invoiceCardCell: View {
-    var body: some View {
-        
-        
+    var body: some View {        
         List() {
+            let profitabilityArr = [
+                ProfitabilityItem(title: "Gross Profit", type: .grossProfit, grossProfitPercent: "35.65%", grossProfitAmount: "$151,663.22",rateAndCost: ("$14,641.85", "$14,641.85"), toolTipText: "Click on tooltip", isEditable: false),
+                ProfitabilityItem(title: "Line Items", type: .generalItem, grossProfitPercent: "$14,641.85", grossProfitAmount: "$151,663.22", rateAndCost: ("$14,641.85", "$14,641.85"), toolTipText: "Click on tooltip", isEditable: false),
+                ProfitabilityItem(title: "Material Cost", type: .itemCost, grossProfitPercent: "35.65%", grossProfitAmount: "$151,663.22",rateAndCost: ("$14,641.85", "$14,641.85"), toolTipText: "Click on tooltip", isEditable: true)
+            ]
             // First item
-            CommonVerticleListCell(itemName: "INV- 00000212", title: "Ceiling Fan Recoiling Work", address: "123 Main Street, Texas 451245", assignedToMembers: ("Assigned To : ", [
+            CommonVerticleListCell(itemName: "INV- 00000212", title: "Ceiling Fan Recoiling Work", address: "123 Main Street, Texas 451245", horizontalMembers: [HorizontalMembersView(title: "Assigned To : ", membersArr: [
                 LimitedHorizontalListViewListItem(
                     image: {
                         AnyView(
@@ -33,7 +36,7 @@ struct invoiceCardCell: View {
                         )
                     }
                 )
-            ]), status: "Overdue", statusColor: "#E74C3C", amount: "300.00", timeAgo: "3 Months ago")
+            ])], status: "Overdue", statusColor: "#E74C3C", amount: "$300.00", timeAgo: "3 Months ago", profitabilityArr: profitabilityArr)
 //                .listRowSeparator(.hidden)
             .background(Color.white) // Match the background color to hide separators
             .listRowInsets(EdgeInsets())
@@ -42,7 +45,7 @@ struct invoiceCardCell: View {
 
             
             // Second item
-            CommonVerticleListCell(itemName: "INV- 00000212", title: "Ceiling Fan Recoiling Work", address: "123 Main Street, Texas 451245", assignedToMembers: ("Assigned To : ", [
+            CommonVerticleListCell(itemName: "INV- 00000212", title: "Ceiling Fan Recoiling Work", address: "123 Main Street, Texas 451245", horizontalMembers: [HorizontalMembersView(title: "Assigned To : ", membersArr: [
                 LimitedHorizontalListViewListItem(
                     image: {
                         AnyView(
@@ -62,7 +65,7 @@ struct invoiceCardCell: View {
                         )
                     }
                 )
-            ]), status: "Paid", statusColor: "#5ED5A8", amount: "300.00", timeAgo: "3 Months ago")
+            ])], status: "Paid", statusColor: "#5ED5A8", amount: "$300.00", timeAgo: "3 Months ago", profitabilityArr: profitabilityArr)
 //                .listRowSeparator(.hidden)
                 .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 .padding(.bottom, 15)

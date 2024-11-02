@@ -22,7 +22,7 @@ struct ClientRelationProfileHeader: View {
                 VStack(alignment: .leading, spacing: 20 * iPadMultiplier) {
                     HStack(spacing: 10 * iPadMultiplier) {
                         Text("Justin Smith")
-                            .font(Font.custom(FontBook.Bold.rawValue, size: 20 * iPadMultiplier))
+                            .font(Font.custom(FontBook.BoldIT.rawValue, size: 20 * iPadMultiplier))
                         
                         RoundedBorderChip(text: "Residential", color: Color(hexString: "#5ED5A8"))
                         

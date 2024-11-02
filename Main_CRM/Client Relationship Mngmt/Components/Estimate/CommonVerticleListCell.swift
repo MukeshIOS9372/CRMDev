@@ -15,8 +15,7 @@ struct CommonVerticleListCell: View {
     var address: String = ""
     var schedule: String = ""
     var client: (String, String)?
-    var assignedToMembers: (String, [LimitedHorizontalListViewListItem])?
-    var subsOrgs: [LimitedHorizontalListViewListItem] = []
+    var horizontalMembers: [HorizontalMembersView]?
     var progress: Float?
     var status: String?
     var statusColor: String?
@@ -24,8 +23,10 @@ struct CommonVerticleListCell: View {
     var tasks: (Int, Int)?
     var amount: String = ""
     var timeAgo: String = ""
-    var badgeCount: Int = 0
-    var isMessageShow: Bool = false
+    var profitabilityArr: [ProfitabilityItem]?
+    var email: (imgName: String, title: String)?
+    var phone: (imgName: String, title: String)?
+    var category: String?
     
     var body: some View {
         VStack(spacing: 10) {
@@ -37,7 +38,7 @@ struct CommonVerticleListCell: View {
                 VStack(alignment: .leading) {
                     if !itemName.isEmpty {
                         Text(itemName)
-                            .font(.system(size: 16, weight: .semibold, design: .default))
+                            .font(Font.custom(FontBook.Semibold.rawValue, size: 16 * iPadMultiplier))
                             .foregroundColor(Color(red: 0.23, green: 0.51, blue: 0.96))
                         Spacer().frame(height: 10)
                     }
@@ -45,23 +46,32 @@ struct CommonVerticleListCell: View {
                     if !title.isEmpty {
                         VStack(alignment: .leading, spacing: 5) {
                             Text(title)
-                                .font(.custom("MyriadPro-Regular", size: 14))
-                                .fontWeight(.regular)
+                                .font(Font.custom(FontBook.Regular.rawValue, size: 14 * iPadMultiplier))
                                 .foregroundColor(Color(red: 0.396, green: 0.424, blue: 0.451))
                             Spacer().frame(height: 5)
                         }
                     }
+                    if let emailId = email {
+                        EmailOrPhoneItemsRow(imageName: emailId.0, title: emailId.1)
+                            .padding(.bottom,5)
+                    }
+                    if let phoneNumber = phone {
+                        EmailOrPhoneItemsRow(imageName: phoneNumber.0, title: phoneNumber.1)
+                    }
+
                     
                     if let cartItemsCount = cartItemsCount {
                         CartItemsRow(cartItemsCount: cartItemsCount)
                         Spacer().frame(height: 5)
                     }
                     
+                    AddressText(title: "At: ", address: address)
+                    if !(category?.isEmpty ?? false) {
+                        AddressText(title: "Category: ", address: category ?? "")
+                    }
                     RelatedText(relatedTo: relatedTo, onTapRelatedTo: {
                         print("related tap..")
-                    })
-                    
-                    AddressText(address: address)
+                    })                    
                     ScheduleText(schedule: schedule)
                     
                     if let client = client {
@@ -81,7 +91,7 @@ struct CommonVerticleListCell: View {
                                     title: {
                                         AnyView(
                                             Text(client.1)
-                                                .font(.custom("MyriadPro-Regular", size: 12))
+                                                .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
                                                 .foregroundColor(Color(red: 0.396, green: 0.424, blue: 0.451))
                                                 .fontWeight(.semibold)
                                         )
@@ -92,24 +102,18 @@ struct CommonVerticleListCell: View {
                         .padding(.bottom, 5)
                     }
                     
-                    if !(assignedToMembers?.1.isEmpty ?? false) {
-                        LimitedHorizontalListViewRow(
-                            title: assignedToMembers?.0 ?? "",
-                            items: assignedToMembers?.1 ?? [],
-                            visibleLimit: 2
-                        )
-                    }
-                    
-                    if !subsOrgs.isEmpty {
-                        LimitedHorizontalListViewRow(
-                            title: "Subs : ",
-                            items: subsOrgs,
-                            visibleLimit: 1
-                        )
+                    if !((horizontalMembers?.count ?? 0) == 0) {
+                        ForEach(0..<(horizontalMembers?.count ?? 0), id: \.self) { i in
+                            LimitedHorizontalListViewRow(
+                                title: horizontalMembers?[i].title ?? "",
+                                items: horizontalMembers?[i].membersArr ?? [],
+                                visibleLimit: 1
+                            )
+                        }
                     }
                 }
-                .frame(maxHeight: .infinity) // Left VStack fills available height
-                
+//                .frame(maxHeight: .infinity) // Left VStack fills available height
+                Spacer()
                 VStack(alignment: .trailing) {
                     RoundedBorderChip(text: status ?? "", color: Color(hexString: statusColor ?? ""))
                     Spacer().frame(height: 20)
@@ -120,35 +124,22 @@ struct CommonVerticleListCell: View {
                     }
                     
                     Spacer()
-                    if isMessageShow {
-                        ZStack{
-                            Button(action: {
-                                print("message clicked")
-                            }) {
-                                Image("message-circle-fill")
-                                    .foregroundColor(Color.blue)
-                            }
-                            .frame(width: 22, height: 22, alignment: .trailing)
-                            
-                            if badgeCount > 0 {
-                                ZStack {
-                                    Circle()
-                                        .fill(Color.red)
-                                        .frame(width: 15, height: 15)
-                                    
-                                    Text("\(badgeCount > 9 ? "9+" : "\(badgeCount)")")
-                                        .font(Font.custom(FontBook.Semibold.rawValue, size: 10 * iPadMultiplier))
-                                        .foregroundColor(.white)
-                                }
-                                .offset(x: 12, y: -10) // Adjust position for the badge
-                            }
+                    
+                    if !(email?.1 ?? "").isEmpty {
+                        Button(action: {
+                            print("jsjs")
+                        }) {
+                            Image("ic_requests_arrow")
+                                .foregroundColor(Color(hexString: "#3B82F6"))
+                                .frame(width: 25, height: 25)
                         }
                     }
+                    
                     // Place amount and time ago at the bottom
                     VStack(alignment: .trailing, spacing: 10) {
                         if !amount.isEmpty {
-                            Text("$\(amount)")
-                                .font(.system(size: 14, weight: .semibold))
+                            Text(amount)
+                                .font(Font.custom(FontBook.Semibold.rawValue, size: 14 * iPadMultiplier))
                                 .foregroundColor(Color(hexString: "#3F464B"))
 //                                .multilineTextAlignment(.trailing)
 //                                .padding(.trailing)
@@ -156,28 +147,23 @@ struct CommonVerticleListCell: View {
                         
                         if !timeAgo.isEmpty {
                             Text(timeAgo)
-                                .font(.system(size: 12, weight: .semibold, design: .default))
+                                .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
                                 .italic()
                                 .foregroundColor(Color(hexString: "#ADB1B5"))
 //                                .multilineTextAlignment(.trailing)
 //                                .padding(.trailing)
                         }
                     }
-//                    .padding()
                 }
                 .frame(maxHeight: .infinity)
             }
-            let profitabilityArr = [
-                ProfitabilityItem(title: "Gross Profit", type: .grossProfit, grossProfitPercent: "35.65%", grossProfitAmount: "$151,663.22",rateAndCost: ("$14,641.85", "$14,641.85"), toolTipText: "Click on tooltip", isEditable: false),
-                ProfitabilityItem(title: "Line Items", type: .generalItem, grossProfitPercent: "$14,641.85", grossProfitAmount: "$151,663.22", rateAndCost: ("$14,641.85", "$14,641.85"), toolTipText: "Click on tooltip", isEditable: false),
-                ProfitabilityItem(title: "Material Cost", type: .itemCost, grossProfitPercent: "35.65%", grossProfitAmount: "$151,663.22",rateAndCost: ("$14,641.85", "$14,641.85"), toolTipText: "Click on tooltip", isEditable: true)
-            ]
             
-            ProfitabilityView(profitabilityItemsArr: profitabilityArr) { itemType, actionType in
-                print(itemType)
-                print(actionType)
+            if (profitabilityArr?.count ?? 0) > 0 {
+                ProfitabilityView(profitabilityItemsArr: profitabilityArr) { itemType, actionType in
+                    print(itemType)
+                    print(actionType)
+                }
             }
-            
         }
         .padding(.all, 10)
         .background(Color.white)
@@ -189,30 +175,32 @@ struct CommonVerticleListCell: View {
     }
 }
 
-
-#Preview {
-    CommonVerticleListCell(itemName: "EST- 00000212", title: "Ceiling Fan Recoiling Work", cartItemsCount: 2, relatedTo: "INV-000240", address: "123 Main Street, Texas 451245", schedule: "Nov. 4th, 2023 @12:45 PM", client: ("justin_profile_icon", "jsnj"), assignedToMembers: ("Assigned To : ", [
-        LimitedHorizontalListViewListItem(
-            image: {
-                AnyView(
-                    Image("justin_profile_icon") // Ensure "img_user" exists in assets
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 20, height: 20)
-                        .clipShape(Circle())
-                )
-            },
-            title: {
-                AnyView(
-                    Text("Mukesh")
-                        .font(.custom("MyriadPro-Regular", size: 12))
-                        .foregroundColor(Color(red: 0.396, green: 0.424, blue: 0.451)) // Hex #656C73
-                        .fontWeight(.semibold)
-                )
-            }
-        )
-    ]), progress: 0.7, status: "Completed", statusColor: "#5ED5A8", phases: (3, 10), tasks: (5, 7), amount: "300.00", timeAgo: "3 Months ago")
+struct CommonVerticleListCell_Previews: PreviewProvider {
+    static var previews: some View {
+        CommonVerticleListCell(itemName: "EST- 00000212", title: "Ceiling Fan Recoiling Work", cartItemsCount: 2, relatedTo: "INV-000240", address: "123 Main Street, Texas 451245", schedule: "Nov. 4th, 2023 @12:45 PM", client: ("justin_profile_icon", "jsnj"), horizontalMembers: [HorizontalMembersView(title: "Assigned To : ", membersArr: [
+            LimitedHorizontalListViewListItem(
+                image: {
+                    AnyView(
+                        Image("justin_profile_icon") // Ensure "img_user" exists in assets
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 20, height: 20)
+                            .clipShape(Circle())
+                    )
+                },
+                title: {
+                    AnyView(
+                        Text("Mukesh")
+                            .font(Font.custom(FontBook.Regular.rawValue, size: 12 * iPadMultiplier))
+                            .foregroundColor(Color(red: 0.396, green: 0.424, blue: 0.451)) // Hex #656C73
+                            .fontWeight(.semibold)
+                    )
+                }
+            )
+        ])], progress: 0.7, status: "Completed", statusColor: "#5ED5A8", phases: (3, 10), tasks: (5, 7), amount: "$300.00", timeAgo: "3 Months ago")
+    }
 }
+
 
 struct CartItemsRow: View {
     var cartItemsCount: Int
@@ -225,9 +213,28 @@ struct CartItemsRow: View {
                 .foregroundColor(Color(red: 0.396, green: 0.424, blue: 0.451)) // Hex #656C73
             // Cart items count text
             Text("\(cartItemsCount) \(cartItemsCount > 1 ? "Items" : "Item")")
-                .font(.custom("MyriadPro-Regular", size: 12)) // Custom font, size 12
+                .font(Font.custom(FontBook.Regular.rawValue, size: 12 * iPadMultiplier))
                 .foregroundColor(Color(red: 0.396, green: 0.424, blue: 0.451)) // Same color as icon
                 .fontWeight(.regular) // Weight 400 equivalent
+        }
+    }
+}
+
+struct EmailOrPhoneItemsRow: View {
+    var imageName: String
+    var title: String
+    
+    var body: some View {
+        HStack(alignment: .center, spacing: 6) {
+            // Cart icon
+            Image(imageName) // Assuming the cart icon image name is "ic_cart" in assets
+                .resizable()
+                .frame(width: 16, height: 16)
+                .foregroundColor(Color(red: 0.396, green: 0.424, blue: 0.451)) // Hex #656C73
+            // Cart items count text
+            Text(title)
+                .font(Font.custom(FontBook.Regular.rawValue, size: 14 * iPadMultiplier)) // Custom font, size 12
+                .foregroundColor(Color(hexString: "#3B82F6")) // Same color as icon
         }
     }
 }
@@ -240,11 +247,11 @@ struct RelatedText: View {
         VStack(alignment: .leading, spacing: 5) {
             if !relatedTo.isEmpty {
                 Text("Related to: ")
-                    .font(.system(size: 12))
+                    .font(Font.custom(FontBook.Regular.rawValue, size: 12 * iPadMultiplier))
                     .foregroundColor(Color(red: 0.678, green: 0.694, blue: 0.710)) // Hex #ADB1B5
                 +
                 Text(relatedTo)
-                    .font(.system(size: 12, weight: .bold))
+                    .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
                     .foregroundColor(Color(red: 0.231, green: 0.510, blue: 0.965)) // Hex #3B82F6
                     .underline()
 //                    .onTapGesture {
@@ -259,17 +266,18 @@ struct RelatedText: View {
 }
 
 struct AddressText: View {
+    var title: String
     var address: String
 
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             if !address.isEmpty {
-                Text("At: ")
-                    .font(.system(size: 12))
+                Text(title)
+                    .font(Font.custom(FontBook.Regular.rawValue, size: 12 * iPadMultiplier))
                     .foregroundColor(Color(red: 0.678, green: 0.694, blue: 0.710)) // Hex #ADB1B5
                 +
                 Text(address)
-                    .font(.system(size: 12, weight: .bold))
+                    .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
                     .foregroundColor(Color(red: 0.396, green: 0.424, blue: 0.451)) // Hex #656C73
                 
                 Spacer()
@@ -285,12 +293,11 @@ struct ScheduleText: View {
         VStack(alignment: .leading, spacing: 5) {
             if !schedule.isEmpty {
                 Text("Schedule: ")
-                    .font(.custom("MyriadPro-Regular", size: 12))
+                    .font(Font.custom(FontBook.Regular.rawValue, size: 12 * iPadMultiplier))
                     .foregroundColor(Color(red: 0.678, green: 0.694, blue: 0.710)) // Hex #ADB1B5
                 +
                 Text(schedule)
-                    .font(.custom("MyriadPro-Regular", size: 12))
-                    .fontWeight(.bold)
+                    .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
                     .foregroundColor(Color(red: 0.396, green: 0.424, blue: 0.451)) // Hex #656C73
                 Spacer()
                     .frame(height: 5) // Spacer with 5-point height
@@ -309,9 +316,8 @@ struct LimitedHorizontalListViewRow: View {
         HStack(alignment: .center, spacing: 4) { // Align items horizontally
             // Title text
             Text(title)
-                .font(.system(size: 12))
+                .font(Font.custom(FontBook.Regular.rawValue, size: 12 * iPadMultiplier))
                 .foregroundColor(Color(red: 0.678, green: 0.694, blue: 0.710)) // Hex #ADB1B5
-                .fontWeight(.regular)
 
             LimitedHorizontalListView(items: items, visibleLimit: visibleLimit)
         }
@@ -331,35 +337,35 @@ struct PhasesAndTasksRow: View {
             return AnyView(VStack(alignment: .trailing) {
                 // Display phases if not nil
                 if let phases = phases {
-                    HStack(spacing: 1) {
+                    HStack {
                         Text("\(phases.0)")
                             .foregroundColor(Color.orange)
-                            .font(.system(size: 12, weight: .semibold))
+                            .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
 
                         Text("/\(phases.1)")
                             .foregroundColor(Color.gray.opacity(0.7))
-                            .font(.system(size: 12, weight: .semibold))
+                            .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
 
                         Text(" Phases")
                             .foregroundColor(Color.gray.opacity(0.5))
-                            .font(.system(size: 12, weight: .semibold))
+                            .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
                     }
                 }
 
                 // Display tasks if not nil
                 if let tasks = tasks {
-                    HStack(spacing: 1) {
+                    HStack {
                         Text("\(tasks.0)")
                             .foregroundColor(Color.orange)
-                            .font(.system(size: 12, weight: .semibold))
+                            .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
 
                         Text("/\(tasks.1)")
                             .foregroundColor(Color.gray.opacity(0.7))
-                            .font(.system(size: 12, weight: .semibold))
+                            .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
 
                         Text(" Tasks")
                             .foregroundColor(Color.gray.opacity(0.5))
-                            .font(.system(size: 12, weight: .semibold))
+                            .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
                     }
                 }
             })
@@ -386,6 +392,10 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
+struct HorizontalMembersView {
+    var title: String?
+    var membersArr: [LimitedHorizontalListViewListItem]?
+}
 
 
 enum ProfitabilityItemType {

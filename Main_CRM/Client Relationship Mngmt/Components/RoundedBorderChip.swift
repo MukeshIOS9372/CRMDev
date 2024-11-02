@@ -21,9 +21,9 @@ struct RoundedBorderChip: View {
                 .foregroundColor(color)
                 .padding(.horizontal, 6 * iPadMultiplier) // Adjust padding for iPad
                 .padding(.vertical, 4 * iPadMultiplier) // Adjust padding for iPad
-//                .background(color.opacity(0.1), in: RoundedRectangle(cornerRadius: 100 * iPadMultiplier)) // Adjust corner radius
-                .background(RoundedRectangle(cornerRadius: 100 * iPadMultiplier)
-                                .fill(Color.primary.opacity(0.1)))
+                .background(color.opacity(0.1), in: RoundedRectangle(cornerRadius: 100 * iPadMultiplier)) // Adjust corner radius
+//                .background(RoundedRectangle(cornerRadius: 100 * iPadMultiplier)
+//                                .fill(Color.primary.opacity(0.1)))
             
             if let trailingIcon = trailingIcon {
                 trailingIcon

@@ -1,17 +1,14 @@
 //
-//  JobsCardCell.swift
-//  contractorplus
+//  WorkOrderCardCell.swift
+//  CRM_New_Dev
 //
 //  Created by Mukesh Behera on 30/10/24.
-//  Copyright © 2024 ContractorPlus. All rights reserved.
 //
 
 import SwiftUI
 
-struct JobsCardCell: View {
+struct WorkOrderCardCell: View {
     var body: some View {
-        
-        
         List() {
             let profitabilityArr = [
                 ProfitabilityItem(title: "Gross Profit", type: .grossProfit, grossProfitPercent: "35.65%", grossProfitAmount: "$151,663.22",rateAndCost: ("$14,641.85", "$14,641.85"), toolTipText: "Click on tooltip", isEditable: false),
@@ -19,7 +16,7 @@ struct JobsCardCell: View {
                 ProfitabilityItem(title: "Material Cost", type: .itemCost, grossProfitPercent: "35.65%", grossProfitAmount: "$151,663.22",rateAndCost: ("$14,641.85", "$14,641.85"), toolTipText: "Click on tooltip", isEditable: true)
             ]
             // First item
-            CommonVerticleListCell(itemName: "JOB- 00000212", title: "Ceiling Fan Recoiling Work", address: "123 Main Street, Texas 451245",schedule: "Nov. 4th, 2023 @12:45 PM", horizontalMembers: [HorizontalMembersView(title: "Assigned To : ", membersArr: [
+            CommonVerticleListCell(itemName: "WO-00000212", title: "Ceiling Fan Recoiling Work", address: "123 Main Street, Texas 451245",schedule: "Nov. 4th, 2023 @12:45 PM", horizontalMembers: [HorizontalMembersView(title: "Delegated To : ", membersArr: [
                 LimitedHorizontalListViewListItem(
                     image: {
                         AnyView(
@@ -39,16 +36,15 @@ struct JobsCardCell: View {
                         )
                     }
                 )
-            ])],progress: 7.0, status: "Overdue", statusColor: "#E74C3C",phases: (6, 12),tasks: (2, 6), timeAgo: "3 Months ago", profitabilityArr: profitabilityArr)
-//                .listRowSeparator(.hidden)
-            .background(Color.white) // Match the background color to hide separators
+            ])], status: "Overdue", statusColor: "#E74C3C", amount: "$300.00", timeAgo: "3 Months ago", profitabilityArr: profitabilityArr)
+            .listRowSeparator(.hidden)
             .listRowInsets(EdgeInsets())
             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
             .padding(.bottom, 15)
 
             
             // Second item
-            CommonVerticleListCell(itemName: "JOB- 00000212", title: "Ceiling Fan Recoiling Work", address: "123 Main Street, Texas 451245", horizontalMembers: [HorizontalMembersView(title: "Assigned To : ", membersArr: [
+            CommonVerticleListCell(itemName: "WO-00000212", title: "Ceiling Fan Recoiling Work", address: "123 Main Street, Texas 451245", horizontalMembers: [HorizontalMembersView(title: "Delegated To : ", membersArr: [
                 LimitedHorizontalListViewListItem(
                     image: {
                         AnyView(
@@ -69,7 +65,7 @@ struct JobsCardCell: View {
                     }
                 )
             ])], status: "Paid", statusColor: "#5ED5A8", amount: "$300.00", timeAgo: "3 Months ago", profitabilityArr: profitabilityArr)
-//                .listRowSeparator(.hidden)
+                .listRowSeparator(.hidden)
                 .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 .padding(.bottom, 15)
         }
@@ -79,8 +75,8 @@ struct JobsCardCell: View {
     }
 }
 
-struct JobsCard_ContentView_Previews: PreviewProvider {
+struct WorkOrderCard_ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        JobsCardCell()
+        WorkOrderCardCell()
     }
 }
