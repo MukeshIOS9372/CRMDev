@@ -25,7 +25,7 @@ struct CircularProgressView: View {
             ZStack {
                 // Background Circle
                 Circle()
-                    .stroke(Color.gray.opacity(0.3), lineWidth: 15)
+                    .stroke(Color.gray.opacity(0.3), lineWidth: 15 * iPadMultiplier)
                     .frame(width: 55 * iPadMultiplier, height: 55 * iPadMultiplier)
                 
                 // Circular segments

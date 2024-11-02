@@ -26,52 +26,92 @@ struct JobsCardCell: View {
                             Image("justin_profile_icon") // Ensure "img_user" exists in assets
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .frame(width: 20, height: 20)
+                                .frame(width: 20 * iPadMultiplier, height: 20 * iPadMultiplier)
                                 .clipShape(Circle())
                         )
                     },
                     title: {
                         AnyView(
                             Text("Mukesh")
-                                .font(.custom("MyriadPro-Regular", size: 12))
-                                .foregroundColor(Color(red: 0.396, green: 0.424, blue: 0.451)) // Hex #656C73
+                                .font(.custom("MyriadPro-Regular", size: 12 * iPadMultiplier))
+                                .foregroundColor(Color(hexString: "#656C73")) // Hex #656C73
                                 .fontWeight(.semibold)
                         )
                     }
                 )
-            ])],progress: 7.0, status: "Overdue", statusColor: "#E74C3C",phases: (6, 12),tasks: (2, 6), timeAgo: "3 Months ago", profitabilityArr: profitabilityArr)
-//                .listRowSeparator(.hidden)
-            .background(Color.white) // Match the background color to hide separators
-            .listRowInsets(EdgeInsets())
-            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-            .padding(.bottom, 15)
-
-            
-            // Second item
-            CommonVerticleListCell(itemName: "JOB- 00000212", title: "Ceiling Fan Recoiling Work", address: "123 Main Street, Texas 451245", horizontalMembers: [HorizontalMembersView(title: "Assigned To : ", membersArr: [
+            ]), HorizontalMembersView(title: "Subs : ", membersArr: [
                 LimitedHorizontalListViewListItem(
                     image: {
                         AnyView(
                             Image("justin_profile_icon") // Ensure "img_user" exists in assets
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .frame(width: 20, height: 20)
+                                .frame(width: 20 * iPadMultiplier, height: 20 * iPadMultiplier)
+                                .clipShape(Circle())
+                        )
+                    },
+                    title: {
+                        AnyView(
+                            Text("Rands Mechanical LLC.")
+                                .font(.custom("MyriadPro-Regular", size: 12 * iPadMultiplier))
+                                .foregroundColor(Color(hexString: "#656C73")) // Hex #656C73
+                                .fontWeight(.semibold)
+                        )
+                    }
+                )
+            ])],progress: 0.7, status: "Overdue", statusColor: "#E74C3C",phases: (6, 12),tasks: (2, 6), timeAgo: "3 Months ago", profitabilityArr: profitabilityArr, badgeCount: 12, isMessageShow: true)
+            .listRowSeparator(.hidden)
+            .listRowInsets(EdgeInsets())
+            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+            .padding(.bottom, 15 * iPadMultiplier)
+
+            
+            // Second item
+            CommonVerticleListCell(itemName: "JOB- 00000212", title: "Ceiling Fan Recoiling Work", address: "123 Main Street, Texas 451245",schedule: "Nov. 4th, 2023 @12:45 PM", horizontalMembers: [HorizontalMembersView(title: "Assigned To : ", membersArr: [
+                LimitedHorizontalListViewListItem(
+                    image: {
+                        AnyView(
+                            Image("justin_profile_icon") // Ensure "img_user" exists in assets
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 20 * iPadMultiplier, height: 20 * iPadMultiplier)
                                 .clipShape(Circle())
                         )
                     },
                     title: {
                         AnyView(
                             Text("Mukesh")
-                                .font(.custom("MyriadPro-Regular", size: 12))
-                                .foregroundColor(Color(red: 0.396, green: 0.424, blue: 0.451)) // Hex #656C73
+                                .font(.custom("MyriadPro-Regular", size: 12 * iPadMultiplier))
+                                .foregroundColor(Color(hexString: "#656C73")) // Hex #656C73
                                 .fontWeight(.semibold)
                         )
                     }
                 )
-            ])], status: "Paid", statusColor: "#5ED5A8", amount: "$300.00", timeAgo: "3 Months ago", profitabilityArr: profitabilityArr)
-//                .listRowSeparator(.hidden)
-                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                .padding(.bottom, 15)
+            ]), HorizontalMembersView(title: "Subs : ", membersArr: [
+                LimitedHorizontalListViewListItem(
+                    image: {
+                        AnyView(
+                            Image("justin_profile_icon") // Ensure "img_user" exists in assets
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 20 * iPadMultiplier, height: 20 * iPadMultiplier)
+                                .clipShape(Circle())
+                        )
+                    },
+                    title: {
+                        AnyView(
+                            Text("Rands Mechanical LLC.")
+                                .font(.custom("MyriadPro-Regular", size: 12 * iPadMultiplier))
+                                .foregroundColor(Color(hexString: "#656C73")) // Hex #656C73
+                                .fontWeight(.semibold)
+                        )
+                    }
+                )
+            ])],progress: 0.4, status: "Overdue", statusColor: "#E74C3C",phases: (6, 12),tasks: (2, 6), timeAgo: "3 Months ago", profitabilityArr: profitabilityArr, badgeCount: 12, isMessageShow: true)
+            .listRowSeparator(.hidden)
+            .listRowInsets(EdgeInsets())
+            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+            .padding(.bottom, 15 * iPadMultiplier)
         }
         .listStyle(PlainListStyle())
         .background(Color.white)

@@ -15,7 +15,7 @@ struct ProfitabilityView: View {
     
     var body: some View {
         if let itemsArr = profitabilityItemsArr {
-            VStack(spacing: 8) {
+            VStack(spacing: 8 * iPadMultiplier) {
                 Button(action: {
 //                    withAnimation {
                         isExpanded.toggle()
@@ -24,22 +24,22 @@ struct ProfitabilityView: View {
                     HStack {
                         Spacer()
                         Text(isExpanded ? "Hide Profitability" : "Show Profitability")
-                            .font(Font.custom(FontBook.Semibold.rawValue, size: 12))
+                            .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
                             .foregroundColor(Color(hexString: "#656C73"))
                         Image(isExpanded ? "ic_Up_dropdown" : "ic_down_dropdown")
                             .font(.subheadline)
-                            .padding(.trailing, 8)
+                            .padding(.trailing, 8 * iPadMultiplier)
                             .foregroundColor(Color(hexString: "#656C73"))
                         Spacer()
                     }
-                    .padding(6)
+                    .padding(6 * iPadMultiplier)
                     .background(Color(hexString: "#F0F0F0"))
                 }
                 
                 if isExpanded {
                     // Horizontal ScrollView for content
                     ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 10) {
+                        HStack(spacing: 10 * iPadMultiplier) {
                             // Gross Profit
                             ForEach(itemsArr, id: \.title) { item in
                                 if item.type == .grossProfit {
@@ -67,20 +67,20 @@ struct ProfitabilityView: View {
                             }
                             
                         }
-                        .padding(.leading, 4)
-                        .padding(.trailing, 4)
+                        .padding(.leading, 4 * iPadMultiplier)
+                        .padding(.trailing, 4 * iPadMultiplier)
                     }
 //                    .transition(.opacity)
 //                    .animation(.smooth, value: isExpanded)
                 }
             }
-            .padding(1)
+            .padding(1 * iPadMultiplier)
             .background(Color(hexString: "#FAFAFA"))
             .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color(hexString: "#D2D4D6"), lineWidth: 1)
+                RoundedRectangle(cornerRadius: 8 * iPadMultiplier)
+                    .stroke(Color(hexString: "#D2D4D6"), lineWidth: 1 * iPadMultiplier)
             )
-            .cornerRadius(8)
+            .cornerRadius(8 * iPadMultiplier)
         }
     }
 }

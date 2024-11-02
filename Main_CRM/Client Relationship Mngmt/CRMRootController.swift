@@ -18,7 +18,7 @@ struct CRMRootController: View {
             ScrollViewReader { scrollViewProxy in
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 16 * iPadMultiplier) {
-                        ForEach(0..<7, id: \.self) { index in
+                        ForEach(0..<8, id: \.self) { index in
                             TabBarButton(title: tabTitle(for: index), isActive: selectedTab == index) {
                                 selectedTab = index
                                 
@@ -50,6 +50,7 @@ struct CRMRootController: View {
         case 4: return "Work Orders"
         case 5: return "Requests"
         case 6: return "Post Inspection"
+        case 7: return "Payments"
         default: return ""
         }
     }
@@ -66,11 +67,11 @@ struct TabBarButton: View {
                 Text(title)
                     .font(.system(size: 14 * iPadMultiplier))
                     .fontWeight(isActive ? .bold : .regular)
-                    .foregroundColor(isActive ? .red : .gray)
+                    .foregroundColor(isActive ? (Color(hexString: "#F21314")) : (Color(hexString: "#656C73")))
 
                 if isActive {
                     Rectangle()
-                        .fill(Color.red)
+                        .fill(Color(hexString: "#F21314"))
                         .frame(height: 2 * iPadMultiplier)
                 } else {
                     Rectangle()
@@ -102,6 +103,8 @@ struct TabContent: View {
                 RequestsTabsComponent()
             case 6:
                 PITabsComponent()
+            case 7:
+                PaymentTabsComponent()
             default:
                 Text("Unknown Tab")
             }

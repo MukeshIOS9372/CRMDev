@@ -34,7 +34,7 @@ struct ClientRelationProfileHeader: View {
                             HStack {
                                 // Icon (using system image or custom image)
                                 Image("menu-vertical-dots-black")
-                                    .foregroundColor(.gray)
+                                    .foregroundColor(Color(hexString: "#3F464B"))
                                     .font(.system(size: 18 * iPadMultiplier))
                             }
                             
@@ -73,29 +73,29 @@ struct ClientRelationProfileHeader: View {
                     // Action for Email
                 }) {
                     Image("ic_notepad")
-                        .font(.system(size: 24 * iPadMultiplier))
+                        .foregroundColor(Color(hexString: "#656C73"))
                 }
 
                 Button(action: {
                     // Action for Phone
                 }) {
                     Image("ic_mail_envelope")
-                        .font(.system(size: 24 * iPadMultiplier))
+                        .foregroundColor(Color(hexString: "#656C73"))
                 }
 
                 Button(action: {
                     // Action for Social
                 }) {
                     Image("ic_chat_icon")
-                        .font(.system(size: 24 * iPadMultiplier))
+                        .foregroundColor(Color(hexString: "#656C73"))
                 }
                 
                 Button(action: {
                     // Action for More Actions
                 }) {
                     HStack {
-                        Image("ic_phone_icon")
-                        Image("ic_down_dropdown") // Plus icon after the text
+                        Image("ic_phone_icon").foregroundColor(Color(hexString: "#656C73"))
+                        Image("ic_down_dropdown").foregroundColor(Color(hexString: "#656C73")) // Plus icon after the text
                     }
                     .padding(10 * iPadMultiplier)
                     .cornerRadius(6 * iPadMultiplier)
@@ -107,7 +107,7 @@ struct ClientRelationProfileHeader: View {
                         .fill(Color(hexString: "#FAFAFA"))
                         .overlay(
                             RoundedRectangle(cornerRadius: 5 * iPadMultiplier)
-                                .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+                                .stroke(Color(hexString: "#D2D4D6"), lineWidth: 1)
                         )
                 )
             }

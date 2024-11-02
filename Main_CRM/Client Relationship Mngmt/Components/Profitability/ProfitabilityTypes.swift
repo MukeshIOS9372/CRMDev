@@ -17,14 +17,14 @@ struct GrossProfitCardView: View {
     @State private var showTooltip = false
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 8 * iPadMultiplier) {
             // Title with clickable Info icon
-            HStack(spacing: 4) {
+            HStack(spacing: 4 * iPadMultiplier) {
                 Circle()
                     .fill(Color(hexString: "#5ED5A8"))
-                    .frame(width: 12, height: 12)
+                    .frame(width: 12 * iPadMultiplier, height: 12 * iPadMultiplier)
                 Text(title ?? "")
-                    .font(Font.custom(FontBook.Regular.rawValue, size: 14))
+                    .font(Font.custom(FontBook.Regular.rawValue, size: 14 * iPadMultiplier))
                     .foregroundColor(Color(hexString: "#656C73"))
                     
                 
@@ -34,32 +34,32 @@ struct GrossProfitCardView: View {
                 }) {
                     Image(systemName: "questionmark.circle")
 //                        .font(.caption2)
-                        .foregroundColor(.secondary)
+//                        .foregroundColor(.secondary)
                 }
                 .popover(isPresented: $showTooltip) {
                     Text("This is the gross profit after expenses.")
                         .padding()
-                        .frame(maxWidth: 200)
+                        .frame(maxWidth: 200 * iPadMultiplier)
                 }
             }
             
             // Amount
-            VStack(spacing: 4) {
+            VStack(spacing: 4 * iPadMultiplier) {
                 Text(amount ?? "")
-                    .font(Font.custom(FontBook.Bold.rawValue, size: 18))
+                    .font(Font.custom(FontBook.Bold.rawValue, size: 18 * iPadMultiplier))
                     .foregroundColor(Color(hexString: "#3F464B"))
                 
                 Text(percentage ?? "")
-                    .font(Font.custom(FontBook.Bold.rawValue, size: 14))
+                    .font(Font.custom(FontBook.Bold.rawValue, size: 14 * iPadMultiplier))
                     .foregroundColor(Color(hexString: "#3F464B"))
             }
 //            .frame(maxWidth: .infinity)
         }
-        .padding(8)
-        .padding(.leading,22)
-        .padding(.trailing,22)
+        .padding(8 * iPadMultiplier)
+        .padding(.leading,22 * iPadMultiplier)
+        .padding(.trailing,22 * iPadMultiplier)
         .background(backgroundColor)
-        .cornerRadius(8)
+        .cornerRadius(8 * iPadMultiplier)
         .frame(width: (UIScreen.main.bounds.width / 2) - 34)
         .onTapGesture {
             onSelect(.grossProfit, .cell)
@@ -90,12 +90,12 @@ struct LineItemsView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             // Title with info icon
-            HStack(spacing: 5) {
+            HStack(spacing: 5 * iPadMultiplier) {
                 Circle()
                     .fill(Color(hexString: "#3B82F6"))
-                    .frame(width: 12, height: 12)
+                    .frame(width: 12 * iPadMultiplier, height: 12 * iPadMultiplier)
                 Text(title)
-                    .font(Font.custom(FontBook.Regular.rawValue, size: 14))
+                    .font(Font.custom(FontBook.Regular.rawValue, size: 14 * iPadMultiplier))
                     .foregroundColor(Color(hexString: "#656C73"))
                 
                 // Question mark icon with tooltip
@@ -104,38 +104,38 @@ struct LineItemsView: View {
                 }) {
                     Image(systemName: "questionmark.circle")
 //                        .font(.caption2)
-                        .foregroundColor(.secondary)
+                        .foregroundColor(Color(hexString: "#656C73"))
                 }
                 .popover(isPresented: $showTooltip) {
                     Text("This is the gross profit after expenses.")
                         .padding()
-                        .frame(maxWidth: 200)
+                        .frame(maxWidth: 200 * iPadMultiplier)
                 }
             }
             
             // Amounts
-            VStack(spacing: 4) {
+            VStack(spacing: 4 * iPadMultiplier) {
                 Text("\(firstAmount) - \(secondAmount)")
-                    .font(Font.custom(FontBook.Semibold.rawValue, size: 12))
+                    .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
                     .foregroundColor(Color(hexString: "#656C73"))
                 
                 // Gross Profit
-                HStack(spacing: 4){
+                HStack(spacing: 4 * iPadMultiplier){
                     Text("\(grossProfit)")
-                        .font(Font.custom(FontBook.Semibold.rawValue, size: 14))
+                        .font(Font.custom(FontBook.Semibold.rawValue, size: 14 * iPadMultiplier))
                         .foregroundColor(Color(hexString: "#5ED5A8"))
                     Text("Gross Profit")
-                        .font(Font.custom(FontBook.Regular.rawValue, size: 10))
+                        .font(Font.custom(FontBook.Regular.rawValue, size: 10 * iPadMultiplier))
                         .foregroundColor(Color(hexString: "#656C73"))
                 }
             }
             .frame(maxWidth: .infinity)
         }
-        .padding(10)
-        .padding(.leading,6)
-        .padding(.trailing,6)
+        .padding(10 * iPadMultiplier)
+        .padding(.leading,6 * iPadMultiplier)
+        .padding(.trailing,6 * iPadMultiplier)
         .background(Color(hexString: "#FAFAFA"))
-        .cornerRadius(10)
+        .cornerRadius(10 * iPadMultiplier)
 //        .shadow(color: Color.black.opacity(0.1), radius: 3, x: 0, y: 1)
         .frame(width: (UIScreen.main.bounds.width / 2) - 34)
         .onTapGesture {
@@ -172,11 +172,11 @@ struct CostsView: View {
     @State private var showTooltip = false
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 8 * iPadMultiplier) {
             // Title with info icon
-            HStack(alignment: .top,spacing: 5) {
+            HStack(alignment: .top,spacing: 5 * iPadMultiplier) {
                 Text(title ?? "")
-                    .font(Font.custom(FontBook.Regular.rawValue, size: 14))
+                    .font(Font.custom(FontBook.Regular.rawValue, size: 14 * iPadMultiplier))
                     .foregroundColor(Color(hexString: "#656C73"))
                 
                 // Question mark icon with tooltip
@@ -185,12 +185,12 @@ struct CostsView: View {
                 }) {
                     Image(systemName: "questionmark.circle")
 //                        .font(.caption2)
-                        .foregroundColor(.secondary)
+                        .foregroundColor(Color(hexString: "#656C73"))
                 }
                 .popover(isPresented: $showTooltip) {
                     Text("This is the gross profit after expenses.")
                         .padding()
-                        .frame(maxWidth: 200)
+                        .frame(maxWidth: 200 * iPadMultiplier)
                 }
                 Spacer()
                 if isShowEdit ?? false {
@@ -200,7 +200,7 @@ struct CostsView: View {
                         Image("editInWhite")
                             .foregroundColor(Color(hexString: "#656C73"))
                     }
-                    .frame(width: 18, height: 18, alignment: .trailing)
+                    .frame(width: 18 * iPadMultiplier, height: 18 * iPadMultiplier, alignment: .trailing)
                 }
             }
             
@@ -210,11 +210,11 @@ struct CostsView: View {
                 .foregroundColor(Color(hexString: "#656C73"))
             
         }
-        .padding(10)
-        .padding(.leading,2)
-        .padding(.trailing,2)
+        .padding(10 * iPadMultiplier)
+        .padding(.leading,2 * iPadMultiplier)
+        .padding(.trailing,2 * iPadMultiplier)
         .background(Color(hexString: "#FAFAFA"))
-        .cornerRadius(10)
+        .cornerRadius(10 * iPadMultiplier)
 //        .shadow(color: Color.black.opacity(0.1), radius: 3, x: 0, y: 1)
         .frame(width: (UIScreen.main.bounds.width / 2) - 34)
         .onTapGesture {

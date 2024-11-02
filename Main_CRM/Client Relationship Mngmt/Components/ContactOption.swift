@@ -24,17 +24,17 @@ struct ContactOption: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 16 * iPadMultiplier, height: 16 * iPadMultiplier)
-                    .foregroundColor(.gray)
+                    .foregroundColor(Color(hexString: "#656C73"))
                 
                 // Text
                 Text(text)
-                    .foregroundColor(.black)
+                    .foregroundColor(Color(hexString: "#3F464B"))
                     .font(Font.custom(FontBook.Semibold.rawValue, size: 10 * iPadMultiplier))
                     .fontWeight(.medium)
                 
                 // Dropdown Indicator (chevron down)
                 Image("ic_down_dropdown")
-                    .foregroundColor(.gray)
+                    .foregroundColor(Color(hexString: "#656C73"))
                     .font(.system(size: 12 * iPadMultiplier))
             }
             .padding(.horizontal, 6 * iPadMultiplier)
@@ -42,10 +42,10 @@ struct ContactOption: View {
             .background(
                 RoundedRectangle(cornerRadius: 12 * iPadMultiplier)
                     .fill(Color(hexString: "#FAFAFA"))
-//                    .shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: 1)
+                //                    .shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: 1)
                     .overlay(
                         RoundedRectangle(cornerRadius: 5 * iPadMultiplier)
-                            .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+                            .stroke(Color(hexString: "#F0F0F0"), lineWidth: 1)
                     )
             )
         }
@@ -58,6 +58,6 @@ struct CustomIconTextButton_Previews: PreviewProvider {
             print("Email button tapped")
         }
         .padding()
-        .background(Color.gray.opacity(0.1))
+        .background(Color(hexString: "#FAFAFA"))
     }
 }

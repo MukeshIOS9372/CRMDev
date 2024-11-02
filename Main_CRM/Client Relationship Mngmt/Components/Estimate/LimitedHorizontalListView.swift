@@ -29,7 +29,7 @@ struct LimitedHorizontalListView: View {
 //                    Spacer()
 //                        .frame(width: 2)
                     Circle()
-                        .fill(Color(red: 0.678, green: 0.694, blue: 0.710)) // Hex #ADB1B5
+                        .fill(Color(hexString: "#ADB1B5")) // Hex #ADB1B5
                         .frame(width: 2.5, height: 2.5)
 //                    Spacer()
 //                        .frame(width: 2)
@@ -42,11 +42,11 @@ struct LimitedHorizontalListView: View {
                     .frame(width: 2)
                 ZStack {
                     Circle()
-                        .fill(Color(red: 0.819, green: 0.835, blue: 0.859)) // Hex #D1D5DB
+                        .fill(Color(hexString: "#D1D5DB")) // Hex #D1D5DB
                         .frame(width: 20, height: 20)
                     
                     Text("+\(items.count - visibleLimit)")
-                        .foregroundColor(Color(red: 0.396, green: 0.424, blue: 0.451)) // Hex #656C73
+                        .foregroundColor(Color(hexString: "#656C73")) // Hex #656C73
                         .font(.system(size: 10, weight: .regular))
                         .padding(2)
                 }
@@ -78,14 +78,14 @@ struct PreviewLimitedHorizontalListView: View {
                         Image("justin_profile_icon") // Ensure this image is added to your assets with this name
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: 20, height: 20)
+                            .frame(width: 20 * iPadMultiplier, height: 20 * iPadMultiplier)
                             .clipShape(Circle())
                     )
                 },
                 title: {
                     AnyView(
                         Text("Item \(i + 1).")
-                            .font(.custom("MyriadPro-Regular", size: 12))
+                            .font(.custom("MyriadPro-Regular", size: 12 * iPadMultiplier))
                             .foregroundColor(Color(hexString: "#656C73")) // Hex #656C73
                             .fontWeight(.semibold)
                     )

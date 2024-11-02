@@ -32,11 +32,11 @@ struct SearchAndFilters: View {
             )
             .padding(15 * iPadMultiplier)
             .padding(.leading, 24 * iPadMultiplier)
-            .background(RoundedRectangle(cornerRadius: 8 * iPadMultiplier).stroke(Color.gray, lineWidth: 1 * iPadMultiplier))
+            .background(RoundedRectangle(cornerRadius: 8 * iPadMultiplier).stroke((Color(hexString: "#ADB1B5")), lineWidth: 1 * iPadMultiplier))
             .overlay(
                 HStack {
                     Image(systemName: "magnifyingglass")
-                        .foregroundColor(Color.gray)
+                        .foregroundColor(Color(hexString: "#656C73"))
                         .frame(width: 30 * iPadMultiplier, height: 30 * iPadMultiplier)
                         .padding(.leading, 5 * iPadMultiplier)
                     Spacer()
@@ -72,14 +72,14 @@ struct ActionableButtonWithState: View {
             Image(iconName)
                 .resizable()
                 .frame(width: 20 * iPadMultiplier, height: 20 * iPadMultiplier)
-                .foregroundColor(isActive ? Color.blue : Color.gray)
+                .foregroundColor(isActive ? (Color(hexString: "#3B82F6")) : (Color(hexString: "#656C73")))
                 .padding(10 * iPadMultiplier)
         }
-        .background(isActive ? Color.blue.opacity(0.2) : Color.gray.opacity(0.1))
+        .background(isActive ? (Color(hexString: "#DBEAFE")) : (Color(hexString: "#FAFAFA")))
         .cornerRadius(8 * iPadMultiplier)
         .overlay(
             RoundedRectangle(cornerRadius: 8 * iPadMultiplier)
-                .stroke(isActive ? Color.blue : Color.gray, lineWidth: 1 * iPadMultiplier)
+                .stroke(isActive ? (Color(hexString: "#3B82F6")) : (Color(hexString: "#F0F0F0")), lineWidth: 1 * iPadMultiplier)
         )
     }
 }

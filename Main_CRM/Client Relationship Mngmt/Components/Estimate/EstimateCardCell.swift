@@ -24,15 +24,15 @@ struct EstimateCardCell: View {
                             Image("justin_profile_icon") // Ensure "muk" exists in assets
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .frame(width: 20, height: 20)
+                                .frame(width: 20 * iPadMultiplier, height: 20 * iPadMultiplier)
                                 .clipShape(Circle())
                         )
                     },
                     title: {
                         AnyView(
                             Text("Mukesh")
-                                .font(.custom("MyriadPro-Regular", size: 12))
-                                .foregroundColor(Color(red: 0.396, green: 0.424, blue: 0.451)) // Hex #656C73
+                                .font(.custom("MyriadPro-Regular", size: 12 * iPadMultiplier))
+                                .foregroundColor(Color(hexString: "#656C73")) // Hex #656C73
                                 .fontWeight(.semibold)
                         )
                     }
@@ -52,22 +52,22 @@ struct EstimateCardCell: View {
                             Image("justin_profile_icon") // Ensure "img_user" exists in assets
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .frame(width: 20, height: 20)
+                                .frame(width: 20 * iPadMultiplier, height: 20 * iPadMultiplier)
                                 .clipShape(Circle())
                         )
                     },
                     title: {
                         AnyView(
                             Text("Mukesh")
-                                .font(.custom("MyriadPro-Regular", size: 12))
-                                .foregroundColor(Color(red: 0.396, green: 0.424, blue: 0.451)) // Hex #656C73
+                                .font(.custom("MyriadPro-Regular", size: 12 * iPadMultiplier))
+                                .foregroundColor(Color(hexString: "#656C73")) // Hex #656C73
                                 .fontWeight(.semibold)
                         )
                     }
                 )
             ])], status: "Approved", statusColor: "#5ED5A8", amount: "$300.00", timeAgo: "3 Months ago", profitabilityArr: profitabilityArr)
             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-            .padding(.bottom, 15)
+            .padding(.bottom, 15 * iPadMultiplier)
             
             let assignedMembersArr2 = [
                 LimitedHorizontalListViewListItem(
@@ -76,15 +76,15 @@ struct EstimateCardCell: View {
                             Image("justin_profile_icon") // Ensure "muk" exists in assets
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .frame(width: 20, height: 20)
+                                .frame(width: 20 * iPadMultiplier, height: 20 * iPadMultiplier)
                                 .clipShape(Circle())
                         )
                     },
                     title: {
                         AnyView(
                             Text("Mukesh")
-                                .font(.custom("MyriadPro-Regular", size: 12))
-                                .foregroundColor(Color(red: 0.396, green: 0.424, blue: 0.451)) // Hex #656C73
+                                .font(.custom("MyriadPro-Regular", size: 12 * iPadMultiplier))
+                                .foregroundColor(Color(hexString: "#656C73")) // Hex #656C73
                                 .fontWeight(.semibold)
                         )
                     }
@@ -98,25 +98,25 @@ struct EstimateCardCell: View {
                             Image("justin_profile_icon") // Ensure "img_user" exists in assets
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .frame(width: 20, height: 20)
+                                .frame(width: 20 * iPadMultiplier, height: 20 * iPadMultiplier)
                                 .clipShape(Circle())
                         )
                     },
                     title: {
                         AnyView(
                             Text("Mukesh")
-                                .font(.custom("MyriadPro-Regular", size: 12))
-                                .foregroundColor(Color(red: 0.396, green: 0.424, blue: 0.451)) // Hex #656C73
+                                .font(.custom("MyriadPro-Regular", size: 12 * iPadMultiplier))
+                                .foregroundColor(Color(hexString: "#656C73")) // Hex #656C73
                                 .fontWeight(.semibold)
                         )
                     }
                 )
             ])], status: "Rejected", statusColor: "#E74C3C", amount: "$300.00", timeAgo: "3 Months ago", profitabilityArr: profitabilityArr)
             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-            .padding(.bottom, 15)
+            .padding(.bottom, 15 * iPadMultiplier)
         }
         .listStyle(PlainListStyle())
-        .padding(.top, 15) // Optional: Padding around the List to avoid clipping
+        .padding(.top, 15 * iPadMultiplier) // Optional: Padding around the List to avoid clipping
     }
 }
 

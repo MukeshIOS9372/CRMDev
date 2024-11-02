@@ -23,15 +23,15 @@ struct WorkOrderCardCell: View {
                             Image("justin_profile_icon") // Ensure "img_user" exists in assets
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .frame(width: 20, height: 20)
+                                .frame(width: 20 * iPadMultiplier, height: 20 * iPadMultiplier)
                                 .clipShape(Circle())
                         )
                     },
                     title: {
                         AnyView(
                             Text("Mukesh")
-                                .font(.custom("MyriadPro-Regular", size: 12))
-                                .foregroundColor(Color(red: 0.396, green: 0.424, blue: 0.451)) // Hex #656C73
+                                .font(.custom("MyriadPro-Regular", size: 12 * iPadMultiplier))
+                                .foregroundColor(Color(hexString: "#656C73")) // Hex #656C73
                                 .fontWeight(.semibold)
                         )
                     }
@@ -40,7 +40,7 @@ struct WorkOrderCardCell: View {
             .listRowSeparator(.hidden)
             .listRowInsets(EdgeInsets())
             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-            .padding(.bottom, 15)
+            .padding(.bottom, 15 * iPadMultiplier)
 
             
             // Second item
@@ -51,15 +51,15 @@ struct WorkOrderCardCell: View {
                             Image("justin_profile_icon") // Ensure "img_user" exists in assets
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .frame(width: 20, height: 20)
+                                .frame(width: 20 * iPadMultiplier, height: 20 * iPadMultiplier)
                                 .clipShape(Circle())
                         )
                     },
                     title: {
                         AnyView(
                             Text("Mukesh")
-                                .font(.custom("MyriadPro-Regular", size: 12))
-                                .foregroundColor(Color(red: 0.396, green: 0.424, blue: 0.451)) // Hex #656C73
+                                .font(.custom("MyriadPro-Regular", size: 12 * iPadMultiplier))
+                                .foregroundColor(Color(hexString: "#656C73")) // Hex #656C73
                                 .fontWeight(.semibold)
                         )
                     }
@@ -67,7 +67,7 @@ struct WorkOrderCardCell: View {
             ])], status: "Paid", statusColor: "#5ED5A8", amount: "$300.00", timeAgo: "3 Months ago", profitabilityArr: profitabilityArr)
                 .listRowSeparator(.hidden)
                 .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                .padding(.bottom, 15)
+                .padding(.bottom, 15 * iPadMultiplier)
         }
         .listStyle(PlainListStyle())
         .background(Color.white)

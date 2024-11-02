@@ -22,26 +22,26 @@ struct StatusCardView: View {
                 HStack(spacing: 0){
                     Text("\(status) - ")
                         .font(Font.custom(FontBook.Regular.rawValue, size: 14 * iPadMultiplier))
-                        .foregroundColor(.gray)
+                        .foregroundColor(Color(hexString: "#656C73"))
                     HStack(spacing: 1){
                         Text("\(progress)")
                             .font(Font.custom(FontBook.Semibold.rawValue, size: 14 * iPadMultiplier))
-                            .foregroundColor(.gray)
+                            .foregroundColor(Color(hexString: "#656C73"))
                         Text("/\(progressMax)")
                             .font(Font.custom(FontBook.Regular.rawValue, size: 14 * iPadMultiplier))
-                            .foregroundColor(.gray)
+                            .foregroundColor(Color(hexString: "#ADB1B5"))
                     }
                 }
                 Spacer()
                 Text(percentage)
                     .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
-                    .foregroundColor(.gray)
+                    .foregroundColor(Color(hexString: "#ADB1B5"))
             }
             
             // Price at the bottom
             Text(price)
                 .font(Font.custom(FontBook.Semibold.rawValue, size: 18 * iPadMultiplier))
-                .foregroundColor(.black)
+                .foregroundColor(Color(hexString: "#3F464B"))
         }
         .padding(20 * iPadMultiplier)
         .background(Color(hexString: "#FAFAFA"))
@@ -50,7 +50,7 @@ struct StatusCardView: View {
         .frame(width: 160 * iPadMultiplier, height: 90 * iPadMultiplier) // Adjust width and height as needed
         .overlay(
             RoundedRectangle(cornerRadius: 8 * iPadMultiplier)
-                .stroke(Color.gray.opacity(0.2), lineWidth: 1 * iPadMultiplier)
+                .stroke((Color(hexString: "#F0F0F0")), lineWidth: 1 * iPadMultiplier)
         )
     }
 }
