@@ -7,15 +7,31 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1F38985C-E303-47FC-88E9-D7113AA86F2A"
+            uuid = "24B98D74-CB9F-4276-A6DB-CBF8827270DF"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Main_CRM/Client Relationship Mngmt/Components/Estimate/CommonVerticleListCell.swift"
+            filePath = "Main_CRM/Client Relationship Mngmt/CRMRootController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BCA1B79F-C2AA-4B23-9CBA-168EA55D6630"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Main_CRM/Client Relationship Mngmt/CRMRootController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
