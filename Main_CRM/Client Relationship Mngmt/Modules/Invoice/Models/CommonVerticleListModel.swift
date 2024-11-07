@@ -27,10 +27,11 @@ struct CommonVerticleListModel: Identifiable, Decodable {
     var profitabilityArr: [ProfitabilityItem]?
     var email: ContactInfo?
     var phone: ContactInfo?
-    var category: String?
+    var category: Client?
     var badgeCount: Int = 0
     var isMessageShow: Bool = false
     var paymentID: String?
+    var isPaymentSettled: Bool = false
     
 }
 

@@ -1,13 +1,14 @@
 //
-//  ShoppingListTabsComponent.swift
-//  Main_CRM
+//  ExpenseTabComponent.swift
+//  MY_Crm
 //
-//  Created by Mukesh Behera on 04/11/24.
+//  Created by Mukesh Behera on 06/11/24.
 //
 
 import SwiftUI
 
-struct ShoppingListTabsComponent: View {
+
+struct ExpenseTabsComponent: View {
     @State private var isInsightsEnable = false
     
     var body: some View {
@@ -39,20 +40,17 @@ struct ShoppingListTabsComponent: View {
                 LimitedHorizontalListViewListItem(
                     image: "justin_profile_icon",
                     title: "Mukesh"
-                ), LimitedHorizontalListViewListItem(
-                    image: "justin_profile_icon",
-                    title: "Mukesh"
                 )
             ]
-            let verticleList = [CommonVerticleListModel(id: "2", itemName: "$41,254.25", title: "Plumbing Items necessary*", cartItemsCount: 6, relatedTo: "EST - 000241", horizontalMembers: [HorizontalMembersView(title: "Assigned To : ", membersArr: assignedMembersArr)], status: "In Progress", statusColor: "#FF9800", timeAgo: "3 Months ago")]
-            ShoppingListListsView(verticleLists: verticleList) // Ensure this function exists in your code
+            let verticleList = [CommonVerticleListModel(id: "3", itemName: "$41,254.25", title: "Ceiling Fan Recoiling Work", horizontalMembers: [HorizontalMembersView(title: "Reimbursable to: ", membersArr: assignedMembersArr)], status: "Overdue", statusColor: "#E74C3C", timeAgo: "3 Months ago", category: Client(name: "Type: ", info: "Non-Reimbursable"), paymentID: "q-154442584548848")]
+            ExpenseListsView(verticleLists: verticleList) // Ensure this function exists in your code
         }
         .padding(12 * iPadMultiplier)
     }
 }
 
-struct ShoppingListTabsComponent_Previews: PreviewProvider {
+struct ExpenseTabsComponent_Previews: PreviewProvider {
     static var previews: some View {
-        ShoppingListTabsComponent()
+        ExpenseTabsComponent()
     }
 }

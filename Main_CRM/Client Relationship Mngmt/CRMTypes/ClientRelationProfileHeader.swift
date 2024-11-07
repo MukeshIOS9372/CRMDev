@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ClientRelationProfileHeader: View {
-    
+    @Binding var selectedTabName: String
     
     var body: some View {
         
@@ -62,7 +62,7 @@ struct ClientRelationProfileHeader: View {
             }
             
 
-            MoreActionButtons()
+            MoreActionButtons(selectedTabName: $selectedTabName)
 
             AddActivityCommonView()
         }
@@ -73,7 +73,8 @@ struct ClientRelationProfileHeader: View {
 
 struct ClientRelationContentView: View {
     var body: some View {
-        ClientRelationProfileHeader()
+        @State var selectedTabName = "Timeline"
+        ClientRelationProfileHeader(selectedTabName: $selectedTabName)
             .background(Color(UIColor.systemBackground))
             .edgesIgnoringSafeArea(.all)
     }

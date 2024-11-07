@@ -50,8 +50,8 @@ struct CommonVerticleListCell: View {
                         }
                         
                         AddressText(title: "At: ", address: verticleLists.address)
-                        if !(verticleLists.category?.isEmpty ?? false) {
-                            AddressText(title: "Category: ", address: verticleLists.category ?? "")
+                        if !(verticleLists.category?.info.isEmpty ?? false) {
+                            AddressText(title: verticleLists.category?.name ?? "", address: verticleLists.category?.info ?? "")
                         }
                         RelatedText(relatedTo: verticleLists.relatedTo, onTapRelatedTo: {
                             print("related tap..")
@@ -71,15 +71,6 @@ struct CommonVerticleListCell: View {
                             .padding(.bottom, 5)
                         }
                         
-                        if !((verticleLists.horizontalMembers?.count ?? 0) == 0) {
-                            ForEach(0..<(verticleLists.horizontalMembers?.count ?? 0), id: \.self) { i in
-                                LimitedHorizontalListViewRow(
-                                    title: verticleLists.horizontalMembers?[i].title ?? "",
-                                    items: verticleLists.horizontalMembers?[i].membersArr ?? [],
-                                    visibleLimit: 1
-                                )
-                            }
-                        }
                         
                         if verticleLists.paymentID != nil {
                             HStack{
@@ -92,6 +83,19 @@ struct CommonVerticleListCell: View {
                                     .foregroundColor(Color(hexString: "#656C73"))
                             }
                             
+                            
+                        }
+                        
+                        if !((verticleLists.horizontalMembers?.count ?? 0) == 0) {
+                            ForEach(0..<(verticleLists.horizontalMembers?.count ?? 0), id: \.self) { i in
+                                LimitedHorizontalListViewRow(
+                                    title: verticleLists.horizontalMembers?[i].title ?? "",
+                                    items: verticleLists.horizontalMembers?[i].membersArr ?? [],
+                                    visibleLimit: 1
+                                )
+                            }
+                        }
+                        if verticleLists.paymentID != nil {
                             Text(verticleLists.paymentID ?? "")
                                 .font(Font.custom(FontBook.Regular.rawValue, size: 12 * iPadMultiplier))
                                 .foregroundColor(Color(hexString: "#ADB1B5"))
@@ -101,7 +105,16 @@ struct CommonVerticleListCell: View {
                     Spacer()
                     VStack(alignment: .trailing) {
                         RoundedBorderChip(text: verticleLists.status ?? "", color: Color(hexString: verticleLists.statusColor ?? ""))
+                            .padding(.bottom, 4 * iPadMultiplier)
+                        if verticleLists.isPaymentSettled {
+                            Text("Funds Settled")
+                                .font(Font.custom(FontBook.Semibold.rawValue, size: 10 * iPadMultiplier))
+                                .foregroundColor(Color(hexString: "#3B82F6"))
+                                .underline()
+                        }
                         Spacer().frame(height: 20 * iPadMultiplier)
+                        
+                        
                         
                         if verticleLists.phases != nil || verticleLists.tasks != nil {
                             PhasesAndTasksRow(phases: verticleLists.phases, tasks: verticleLists.tasks)
@@ -166,10 +179,13 @@ struct CommonVerticleListCell: View {
                 }
                 
                 if (verticleLists.profitabilityArr?.count ?? 0) > 0 {
-                    ProfitabilityView(profitabilityItemsArr: verticleLists.profitabilityArr) { itemType, actionType in
-                        print(itemType)
-                        print(actionType)
-                    }
+                    ProfitabilityView(HideTitle: "Hide Profitability",showTitle: "Show Profitability",expandedContent: AnyView(ScrollViewOfProfitability(
+                        profitabilityItemsArr: verticleLists.profitabilityArr,
+                        onItemSelected: { itemType, actionType in
+                            print(itemType)
+                            print(actionType)
+                        }
+                    )))
                 }
             }
             .padding(.all, 10 * iPadMultiplier)
@@ -325,46 +341,47 @@ struct PhasesAndTasksRow: View {
     var tasks: Tasks?
 
     var body: some View {
-        // Return EmptyView if both phases and tasks are nil
-        if phases == nil && tasks == nil {
-            return AnyView(EmptyView())
-        } else {
-            return AnyView(VStack(alignment: .trailing) {
-                // Display phases if not nil
-                if let phases = phases {
-                    HStack(spacing: 1) {
-                        Text("\(phases.current)")
-                            .foregroundColor(Color(hexString: "#FF9800"))
-                            .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
+        Group {
+            if phases == nil && tasks == nil {
+                EmptyView()
+            } else {
+                VStack(alignment: .trailing) {
+                    // Display phases if not nil
+                    if let phases = phases {
+                        HStack(spacing: 1) {
+                            Text("\(phases.current)")
+                                .foregroundColor(Color(hexString: "#FF9800"))
+                                .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
 
-                        Text("/\(phases.total)")
-                            .foregroundColor(Color(hexString: "#ADB1B5"))
-                            .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
+                            Text("/\(phases.total)")
+                                .foregroundColor(Color(hexString: "#ADB1B5"))
+                                .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
 
-                        Text(" Phases")
-                            .foregroundColor(Color(hexString: "#656C73"))
-                            .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
+                            Text(" Phases")
+                                .foregroundColor(Color(hexString: "#656C73"))
+                                .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
+                        }
+                    }
+
+                    // Display tasks if not nil
+                    if let tasks = tasks {
+                        HStack(spacing: 1) {
+                            Text("\(tasks.completed)")
+                                .foregroundColor(Color(hexString: "#FF9800"))
+                                .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
+
+                            Text("/\(tasks.total)")
+                                .foregroundColor(Color(hexString: "#ADB1B5"))
+                                .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
+
+                            Text(" Tasks")
+                                .foregroundColor(Color(hexString: "#656C73"))
+                                .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
+                        }
                     }
                 }
-
-                // Display tasks if not nil
-                if let tasks = tasks {
-                    HStack(spacing: 1) {
-                        Text("\(tasks.completed)")
-                            .foregroundColor(Color(hexString: "#FF9800"))
-                            .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
-
-                        Text("/\(tasks.total)")
-                            .foregroundColor(Color(hexString: "#ADB1B5"))
-                            .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
-
-                        Text(" Tasks")
-                            .foregroundColor(Color(hexString: "#656C73"))
-                            .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
-                    }
-                }
-            })
-            .multilineTextAlignment(.trailing)
+                .multilineTextAlignment(.trailing)
+            }
         }
     }
 }
@@ -405,3 +422,44 @@ enum ProfitabilityItemCellTapType {
     case cell
 }
 
+
+struct ScrollViewOfProfitability:View{
+    var profitabilityItemsArr: [ProfitabilityItem]?
+    var onItemSelected: ((ProfitabilityItemType, ProfitabilityItemCellTapType?) -> Void)?
+    var body: some View {
+        if let itemsArr = profitabilityItemsArr {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 10 * iPadMultiplier) {
+                    // Gross Profit
+                    ForEach(itemsArr, id: \.title) { item in
+                        if item.type == .grossProfit {
+                            GrossProfitCardView(title: item.title, amount: item.grossProfitAmount, percentage: item.grossProfitPercent, onSelect: { itemType,actionType in
+                                onItemSelected?(itemType, actionType)
+                            })
+                        } else if item.type == .generalItem {
+                            // Line Items
+                            LineItemsView(
+                                title: item.title,
+                                firstAmount: item.rateAndCost.rate,
+                                secondAmount: item.rateAndCost.cost,
+                                grossProfit: item.grossProfitAmount, onSelect: { itemType,actionType in
+                                    onItemSelected?(itemType, actionType)
+                                })
+                        } else {
+                            CostsView(
+                                title: item.title,
+                                amount: item.grossProfitAmount,
+                                isShowEdit: item.isEditable, onSelect: { itemType,actionType  in
+                                    //                                            selectedItem = (itemType, actionType)
+                                    onItemSelected?(itemType, actionType)
+                                })
+                        }
+                    }
+                    
+                }
+                .padding(.leading, 4 * iPadMultiplier)
+                .padding(.trailing, 4 * iPadMultiplier)
+            }
+        }
+    }
+}

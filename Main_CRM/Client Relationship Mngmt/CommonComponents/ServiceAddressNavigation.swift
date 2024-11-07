@@ -50,5 +50,5 @@ struct ServiceAddressNavigation: View {
 
 #Preview {
     ServiceAddressNavigation(iconName: "ic_bed-fill", number: "k", isZellow: false)
-    ServiceAddressNavigation(iconName: "ic_bed-fill", number: "k", isZellow: true)
+//    ServiceAddressNavigation(iconName: "ic_bed-fill", number: "k", isZellow: true)
 }

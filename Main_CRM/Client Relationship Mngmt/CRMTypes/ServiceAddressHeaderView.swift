@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ServiceAddressHeaderView: View {
     
+    @Binding var selectedTabName: String
     
     var body: some View {
         
@@ -70,7 +71,7 @@ struct ServiceAddressHeaderView: View {
             }
             
 
-            MoreActionButtons()
+            MoreActionButtons(selectedTabName: $selectedTabName)
 
             AddActivityCommonView()
         }
@@ -81,7 +82,8 @@ struct ServiceAddressHeaderView: View {
 
 struct ServiceAddressHeaderContentView: View {
     var body: some View {
-        ServiceAddressHeaderView()
+        @State var selectedTabName = "Timeline"
+        ServiceAddressHeaderView(selectedTabName: $selectedTabName)
             .background(Color(UIColor.systemBackground))
             .edgesIgnoringSafeArea(.all)
     }

@@ -39,7 +39,7 @@ struct PaymentTabsComponent: View {
             })
             
             Spacer().frame(height: 20 * iPadMultiplier)
-            let verticleList = [CommonVerticleListModel(id: "3", itemName: "$41,254.25", title: "Ceiling Fan Recoiling Work", address: "123 Main Street, Texas 451245", status: "Overdue", statusColor: "#E74C3C", amount: "INV - 0002451", timeAgo: "3 Months ago", category: "Equipment Rental", paymentID: "q-154442584548848")]
+            let verticleList = [CommonVerticleListModel(id: "3", itemName: "$41,254.25", title: "Ceiling Fan Recoiling Work", address: "123 Main Street, Texas 451245", status: "Overdue", statusColor: "#E74C3C", amount: "INV - 0002451", timeAgo: "3 Months ago", category: Client(name: "Category: ", info: "Equipment Rental"), paymentID: "q-154442584548848", isPaymentSettled: true)]
             PaymentsListsView(verticleLists: verticleList)
                 
         }

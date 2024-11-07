@@ -1,15 +1,16 @@
 //
-//  PaymentsListsView.swift
-//  CRM_New_Dev
+//  BillingAddressListView.swift
+//  MY_Crm
 //
-//  Created by Mukesh Behera on 02/11/24.
+//  Created by Mukesh Behera on 06/11/24.
 //
 
 import SwiftUI
 
-struct PaymentsListsView: View {
-    var verticleLists = [CommonVerticleListModel]()
-    @StateObject private var viewModel = PaymentsViewModel()
+struct BillingAddressListView: View {
+    
+    //    var verticleLists = [CommonVerticleListModel]()
+    @StateObject private var viewModel = BillingAddressViewModel()
     
     var body: some View {
         //        VStack {
@@ -34,14 +35,23 @@ struct PaymentsListsView: View {
         //        .alert(isPresented: $viewModel.showAlert) {
         //            Alert(title: Text("Error"), message: Text(viewModel.errorMessage ?? "Unknown error"))
         //        }
+        
         List() {
             
-            ForEach(verticleLists, id: \.id) { item in
-                CommonVerticleListCell(commonVerticleLists: item)
+            //            ForEach(verticleLists, id: \.id) { item in
+            let assignedMembersArr = [LimitedHorizontalListViewListItem(
+                image: "preview_img",
+                title: "Mukesh"
+            ), LimitedHorizontalListViewListItem(
+                image: "justin_profile_icon",
+                title: "Robert D."
+            )]
+            
+            CommonServiceAddressCell(imageName: "preview_img", title: "87038 Hannah Stravenue", address: "132/5 Main Street, South Roth, Arizona,  US,", horizontalMembers: [HorizontalMembersView(title: "Owner: ", membersArr: assignedMembersArr), HorizontalMembersView(title: "Tenant: ", membersArr: assignedMembersArr)])
                 .listRowSeparator(.hidden)
                 .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                 .padding(.bottom, 15 * iPadMultiplier)
-            }
+            //            }
             
         }
         .listStyle(PlainListStyle())
@@ -50,10 +60,9 @@ struct PaymentsListsView: View {
     }
 }
 
-struct PaymentsCard_ContentView_Previews: PreviewProvider {
+struct BillingAddressList_ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        let verticleList = [CommonVerticleListModel(id: "3", itemName: "$41,254.25", title: "Ceiling Fan Recoiling Work", address: "123 Main Street, Texas 451245", status: "Overdue", statusColor: "#E74C3C", amount: "INV - 0002451", timeAgo: "3 Months ago", category: Client(name: "Category: ", info: "Equipment Rental"), paymentID: "q-154442584548848", isPaymentSettled: true)]
-        PaymentsListsView(verticleLists: verticleList)
+        BillingAddressListView()
     }
 }
 

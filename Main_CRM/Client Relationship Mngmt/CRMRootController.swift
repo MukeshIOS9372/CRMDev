@@ -7,11 +7,15 @@
 
 import SwiftUI
 
+class TabSelectionViewModel: ObservableObject {
+    @Published var selectedTabName: String = "Timeline"
+}
+
 struct CRMRootController: View {
     @State private var selectedTab: Int = 0
     @State private var moreSelectedOption: String
-    @State private var mainSelectedOption: String
-
+    @ObservedObject var tabSelectionViewModel = TabSelectionViewModel()
+    
     let mainTabs = [
         "Timeline",
         "Estimates",
@@ -24,17 +28,19 @@ struct CRMRootController: View {
         "Requests",
         "Post Inspection",
         "Payments",
-        "Shopping List"
+        "Shopping List",
+        "Expenses",
+        "Service Addresses",
+        "Billing Addresses"
     ]
 
     init() {
         _moreSelectedOption = State(initialValue: moreOptions.first!)
-        _mainSelectedOption = State(initialValue: mainTabs.first!)
     }
 
     var body: some View {
         VStack(alignment: .center) {
-            ServiceAddressHeaderView()
+            ServiceAddressHeaderView(selectedTabName: $tabSelectionViewModel.selectedTabName)
 
             // Scrollable Tab Bar with Centering on Selection
             ScrollViewReader { scrollViewProxy in
@@ -44,8 +50,7 @@ struct CRMRootController: View {
                         ForEach(0..<mainTabs.count, id: \.self) { index in
                             TabBarButton(title: mainTabs[index], isActive: selectedTab == index, showDropdownIcon: false) {
                                 selectedTab = index
-                                mainSelectedOption = mainTabs[index]
-
+                                tabSelectionViewModel.selectedTabName = mainTabs[index]
                                 
                                 // Scroll to the selected tab and center it
                                 withAnimation {
@@ -55,25 +60,25 @@ struct CRMRootController: View {
                             .id(index)
                         }
 
+                        // "More" tab and menu for additional options
                         if selectedTab < mainTabs.count {
                             TabBarButton(
                                 title: moreSelectedOption,
                                 isActive: selectedTab >= mainTabs.count,
                                 showDropdownIcon: true
                             ) {
-                                if selectedTab < mainTabs.count {
-                                    // When "More" tab is not selected, just switch to the "More" tab
-                                    selectedTab = mainTabs.count
-                                }
+                                selectedTab = mainTabs.count + (moreOptions.firstIndex(of: moreSelectedOption) ?? 0)
                             }
                         } else {
                             Menu {
                                 ForEach(moreOptions, id: \.self) { option in
                                     Button(action: {
                                         moreSelectedOption = option
-                                        selectedTab = mainTabs.count + moreOptions.firstIndex(of: option)!
+                                        tabSelectionViewModel.selectedTabName = option
+                                        selectedTab = mainTabs.count + (moreOptions.firstIndex(of: option) ?? 0)
                                     }) {
-                                        Text(option)
+                                        Label(option, systemImage: option == moreSelectedOption ? "checkmark" : "")
+                                            .foregroundColor(option == moreSelectedOption ? Color.red : Color.blue)
                                     }
                                 }
                             } label: {
@@ -83,14 +88,12 @@ struct CRMRootController: View {
                                     showDropdownIcon: true
                                 ) {
                                     if selectedTab < mainTabs.count {
-                                        selectedTab = mainTabs.count
+                                        selectedTab = mainTabs.count + moreOptions.firstIndex(of: moreSelectedOption)!
                                     }
                                 }
                             }
-                            .id(mainTabs.count)
+                            .id(moreOptions.count)
                         }
-                        // "More" Tab with Menu and Dropdown Icon
-                        
                     }
                     .padding(.horizontal, 12 * iPadMultiplier)
                 }
@@ -99,30 +102,52 @@ struct CRMRootController: View {
             // Swipeable Tab Content
             TabView(selection: $selectedTab) {
                 Text("Timeline Content").tag(0)
+                    .onAppear { tabSelectionViewModel.selectedTabName = "Timeline" }
                 EstimateTabComponent().tag(1)
+                    .onAppear { tabSelectionViewModel.selectedTabName = "Estimates" }
                 InvoiceTabComponent().tag(2)
+                    .onAppear { tabSelectionViewModel.selectedTabName = "Invoices" }
 
-                // Content for "More" options
-                if moreSelectedOption == "Jobs" {
-                    JobsTabsComponent().tag(mainTabs.count + 0)
-                } else if moreSelectedOption == "Work Orders" {
-                    WOTabsComponent().tag(mainTabs.count + 1)
-                } else if moreSelectedOption == "Requests" {
-                    RequestsTabsComponent().tag(mainTabs.count + 2)
-                } else if moreSelectedOption == "Post Inspection" {
-                    PITabsComponent().tag(mainTabs.count + 3)
-                } else if moreSelectedOption == "Payments" {
-                    PaymentTabsComponent().tag(mainTabs.count + 4)
-                } else if moreSelectedOption == "Shopping List" {
-                    ShoppingListTabsComponent().tag(mainTabs.count + 5)
-                } else {
-                    Text("Timeline Content").tag(0)
-                    EstimateTabComponent().tag(1)
-                    InvoiceTabComponent().tag(2)
+                // Display content based on moreSelectedOption
+                ForEach(moreOptions.indices, id: \.self) { index in
+                    Group {
+                        switch moreOptions[index] {
+                        case "Jobs":
+                            JobsTabsComponent()
+                        case "Work Orders":
+                            WOTabsComponent()
+                        case "Requests":
+                            RequestsTabsComponent()
+                        case "Post Inspection":
+                            PITabsComponent()
+                        case "Payments":
+                            PaymentTabsComponent()
+                        case "Shopping List":
+                            ShoppingListTabsComponent()
+                        case "Expenses":
+                            ExpenseTabsComponent()
+                        case "Service Addresses":
+                            ServiceAddressTabComponent()
+                        case "Billing Addresses":
+                            BillingAddressTabComponent()
+                        default:
+                            EmptyView()
+                        }
+                    }
+                    .tag(mainTabs.count + index)
+                    .onAppear {
+                        tabSelectionViewModel.selectedTabName = moreOptions[index] // Update tab name for "more" options
+                    }
                 }
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+        .onAppear {
+            // Ensure `selectedTab` aligns with `moreSelectedOption`
+            if selectedTab >= mainTabs.count {
+                selectedTab = mainTabs.count + moreOptions.firstIndex(of: moreSelectedOption)!
+            }
         }
     }
 }
