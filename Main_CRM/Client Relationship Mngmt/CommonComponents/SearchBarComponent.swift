@@ -13,7 +13,7 @@ struct Actionable {
     var actionableType: ActionableType
 }
 enum ActionableType {
-    case insight, filter
+    case insight, filter, menu
 }
 struct SearchAndFilters: View {
     var actions: [Actionable]
@@ -75,11 +75,12 @@ struct ActionableButtonWithState: View {
                 .foregroundColor(isActive ? (Color(hexString: "#3B82F6")) : (Color(hexString: "#656C73")))
                 .padding(10 * iPadMultiplier)
         }
-        .background(isActive ? (Color(hexString: "#DBEAFE")) : (Color(hexString: "#FAFAFA")))
+        .background(type == .menu ? Color.white : (isActive ? Color(hexString: "#DBEAFE") : Color(hexString: "#FAFAFA")))
+        
         .cornerRadius(8 * iPadMultiplier)
         .overlay(
             RoundedRectangle(cornerRadius: 8 * iPadMultiplier)
-                .stroke(isActive ? (Color(hexString: "#3B82F6")) : (Color(hexString: "#F0F0F0")), lineWidth: 1 * iPadMultiplier)
+                .stroke(type == .menu ? Color.white : (isActive ? Color(hexString: "#3B82F6") : Color(hexString: "#F0F0F0")), lineWidth: 1 * iPadMultiplier)
         )
     }
 }

@@ -9,19 +9,33 @@ import SwiftUI
 
 struct PITabsComponent: View {
     @State private var isInsightsEnable = false
+    var isFromJob = false
     
     var body: some View {
         VStack(alignment: .center) {
+            if isFromJob {
+                TabsTitleWithCountView(title: "Inspections", count: 12, onActionTap: { actions in
+                    if actions.actionableType == .insight {
+                        withAnimation {
+                            isInsightsEnable.toggle()
+                        }
+                    } else {
+                        // Handle other actions if necessary
+                    }
+                }, actions: [
+                    Actionable(isActive: true, assetName: "menu-vertical-dots-black", actionableType: .menu)
+                ])
+            }
             if isInsightsEnable {
                 DraftWithPriceScroller()
                     .transition(.slide)
-                    .animation(.default) // Use .default for animation compatibility
+                    .animation(.default)
                     .padding(.bottom, 20 * iPadMultiplier)
             }
             
             SearchAndFilters(actions: [
                 Actionable(isActive: false, assetName: "ic_filter", actionableType: .filter),
-                Actionable(isActive: true, assetName: "ic_insights", actionableType: .insight)
+//                Actionable(isActive: true, assetName: "ic_insights", actionableType: .insight)
             ], onValueChange: { _ in }, onActionTap: { actions in
                 
                 if actions.actionableType == .insight {

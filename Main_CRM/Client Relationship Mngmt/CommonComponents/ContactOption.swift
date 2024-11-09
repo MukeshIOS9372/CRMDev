@@ -11,7 +11,8 @@ import SwiftUI
 struct ContactOption: View {
     var iconName: String
     var text: String
-    var rightIconName: String
+    var rightIconName: String?
+    var shape: ProfileImageShape
     var badgeNumber: Int = 0
     var action: () -> Void
 
@@ -22,12 +23,20 @@ struct ContactOption: View {
         }) {
             HStack {
                 // Icon (using system image or custom image)
-                Image(iconName)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 16 * iPadMultiplier, height: 16 * iPadMultiplier)
-                    .foregroundColor(Color(hexString: "#656C73"))
-                
+                if shape == .circular {
+                    Image(iconName)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 16 * iPadMultiplier, height: 16 * iPadMultiplier)
+                        .foregroundColor(Color(hexString: "#656C73"))
+                } else {
+                    Image(iconName)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 25, height: 15)
+                        .clipShape(RoundedRectangle(cornerRadius: 2 * iPadMultiplier))
+                        .overlay(RoundedRectangle(cornerRadius: 2 * iPadMultiplier).stroke(Color.white, lineWidth: 1 * iPadMultiplier))
+                }
                 // Text
                 Text(text)
                     .foregroundColor(Color(hexString: "#3F464B"))
@@ -39,8 +48,8 @@ struct ContactOption: View {
                         .foregroundColor(Color(hexString: "#656C73"))
                         .frame(width: 20, height: 20)
                         .background(Circle().fill(Color(hexString: "#F0F0F0")))
-                } else {
-                    Image(rightIconName)
+                } else if !(rightIconName?.isEmpty ?? false) {
+                    Image(rightIconName ?? "")
                         .foregroundColor(Color(hexString: "#656C73"))
                         .font(.system(size: 12 * iPadMultiplier))
                 }
@@ -48,6 +57,7 @@ struct ContactOption: View {
             }
             .padding(.horizontal, 6 * iPadMultiplier)
             .padding(.vertical, 5 * iPadMultiplier)
+            .frame(height: 25)
             .background(
                 RoundedRectangle(cornerRadius: 12 * iPadMultiplier)
                     .fill(Color(hexString: "#FAFAFA"))
@@ -63,7 +73,7 @@ struct ContactOption: View {
 
 struct CustomIconTextButton_Previews: PreviewProvider {
     static var previews: some View {
-        ContactOption(iconName: "ic_mail_gray", text: "Email", rightIconName: "ic_down_dropdown") {
+        ContactOption(iconName: "preview_img", text: "Email", rightIconName: "ic_down_dropdown", shape: .rectangular) {
             print("Email button tapped")
         }
         .padding()

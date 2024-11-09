@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MoreActionButtons: View {
     @Binding var selectedTabName: String
+    var titleInitial: String
     
     var body: some View {
         
@@ -17,7 +18,7 @@ struct MoreActionButtons: View {
                 // Action for New Estimate
             }) {
                 HStack {
-                    Text("New \(selectedTabName)") // Text for the first button
+                    Text("\(titleInitial) \(selectedTabName)") // Text for the first button
                         .font(Font.custom(FontBook.Semibold.rawValue, size: 14 * iPadMultiplier))
                         .foregroundColor(Color(hexString: "#3B82F6"))
                     Image(systemName: "plus") // Plus icon after the text
@@ -55,6 +56,6 @@ struct MoreActionButtons: View {
 struct MoreAction_ContentView_Previews: PreviewProvider {
     static var previews: some View {
         @State var selectedTabName = "Timeline"
-        MoreActionButtons(selectedTabName: $selectedTabName)
+        MoreActionButtons(selectedTabName: $selectedTabName, titleInitial: "New")
     }
 }

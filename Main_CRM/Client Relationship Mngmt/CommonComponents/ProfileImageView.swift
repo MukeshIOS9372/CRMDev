@@ -17,6 +17,7 @@ enum ProfileImageShape {
 struct ProfileImageView: View {
     var imageName: String
     var shape: ProfileImageShape
+    var isShowEdit: Bool = true
     
     var body: some View {
         // Base size for profile image
@@ -41,16 +42,18 @@ struct ProfileImageView: View {
             }
             
             // Edit icon
-            Circle()
-                .fill(Color.blue)
-                .frame(width: 26 * iPadMultiplier, height: 26 * iPadMultiplier)
-                .overlay(
-                    Image("editInWhite")
-                        .resizable()
-                        .frame(width: 18 * iPadMultiplier, height: 18 * iPadMultiplier)
-                        .foregroundColor(.white)
-                )
-                .padding(4 * iPadMultiplier)
+            if isShowEdit {
+                Circle()
+                    .fill(Color.blue)
+                    .frame(width: 26 * iPadMultiplier, height: 26 * iPadMultiplier)
+                    .overlay(
+                        Image("editInWhite")
+                            .resizable()
+                            .frame(width: 18 * iPadMultiplier, height: 18 * iPadMultiplier)
+                            .foregroundColor(.white)
+                    )
+                    .padding(4 * iPadMultiplier)
+            }
         }
         .padding(.leading, 20 * iPadMultiplier)
         .padding(.top, 20 * iPadMultiplier)

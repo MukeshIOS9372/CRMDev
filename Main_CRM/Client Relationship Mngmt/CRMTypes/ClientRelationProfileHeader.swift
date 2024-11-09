@@ -44,15 +44,15 @@ struct ClientRelationProfileHeader: View {
                     .padding(.top, 20 * iPadMultiplier)
                     
                     HStack {
-                        ContactOption(iconName: "ic_mail_gray", text: "Email", rightIconName: "ic_down_dropdown", action: {
+                        ContactOption(iconName: "ic_mail_gray", text: "Email", rightIconName: "ic_down_dropdown", shape: .circular, action: {
                             print("")
                         })
                         
-                        ContactOption(iconName: "ic_phone_icon", text: "Phone", rightIconName: "ic_down_dropdown", action: {
+                        ContactOption(iconName: "ic_phone_icon", text: "Phone", rightIconName: "ic_down_dropdown", shape: .circular, action: {
                             print("")
                         })
                         
-                        ContactOption(iconName: "ic_social", text: "Social", rightIconName: "ic_down_dropdown", action: {
+                        ContactOption(iconName: "ic_social", text: "Social", rightIconName: "ic_down_dropdown", shape: .circular, action: {
                             print("")
                         })
                     }
@@ -62,7 +62,7 @@ struct ClientRelationProfileHeader: View {
             }
             
 
-            MoreActionButtons(selectedTabName: $selectedTabName)
+            MoreActionButtons(selectedTabName: $selectedTabName, titleInitial: "New")
 
             AddActivityCommonView()
         }

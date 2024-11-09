@@ -10,9 +10,24 @@ import SwiftUI
 
 struct ExpenseTabsComponent: View {
     @State private var isInsightsEnable = false
+    var isFromJob = false
     
     var body: some View {
         VStack(alignment: .center) {
+            if isFromJob {
+                TabsTitleWithCountView(title: "Expenses", count: 12, onActionTap: { actions in
+                    if actions.actionableType == .insight {
+                        withAnimation {
+                            isInsightsEnable.toggle()
+                        }
+                    } else {
+                        // Handle other actions if necessary
+                    }
+                }, actions: [
+                    Actionable(isActive: false, assetName: "ic_insights", actionableType: .insight),
+                    Actionable(isActive: true, assetName: "menu-vertical-dots-black", actionableType: .menu)
+                ])
+            }
             if isInsightsEnable {
                 DraftWithPriceScroller()
                     .transition(.slide)
@@ -22,7 +37,7 @@ struct ExpenseTabsComponent: View {
             
             SearchAndFilters(actions: [
                 Actionable(isActive: false, assetName: "ic_filter", actionableType: .filter),
-                Actionable(isActive: true, assetName: "ic_insights", actionableType: .insight)
+//                Actionable(isActive: true, assetName: "ic_insights", actionableType: .insight)
             ], onValueChange: { _ in }, onActionTap: { actions in
                 
                 if actions.actionableType == .insight {

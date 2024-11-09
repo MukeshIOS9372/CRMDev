@@ -1,17 +1,13 @@
 //
-//  CRMRootController.swift
-//  CRM_Dev
+//  JobsRootController.swift
+//  Main_CRM
 //
-//  Created by Mukesh Behera on 24/10/24.
+//  Created by Mukesh Behera on 08/11/24.
 //
 
 import SwiftUI
 
-class TabSelectionViewModel: ObservableObject {
-    @Published var selectedTabName: String = "Timeline"
-}
-
-struct CRMRootController: View {
+struct JobsRootController: View {
     @State private var selectedTab: Int = 0
     @State private var moreSelectedOption: String
     @ObservedObject var tabSelectionViewModel = TabSelectionViewModel()
@@ -23,10 +19,9 @@ struct CRMRootController: View {
     ]
 
     let moreOptions = [
-        "Jobs",
         "Work Orders",
         "Requests",
-        "Post Inspection",
+        "Inspection",
         "Payments",
         "Shopping List",
         "Expenses",
@@ -40,7 +35,7 @@ struct CRMRootController: View {
 
     var body: some View {
         VStack(alignment: .center) {
-            ServiceAddressHeaderView(selectedTabName: $tabSelectionViewModel.selectedTabName)
+            JobsHeaderView(selectedTabName: $tabSelectionViewModel.selectedTabName)
 
             // Scrollable Tab Bar with Centering on Selection
             ScrollViewReader { scrollViewProxy in
@@ -103,29 +98,27 @@ struct CRMRootController: View {
             TabView(selection: $selectedTab) {
                 Text("Timeline Content").tag(0)
                     .onAppear { tabSelectionViewModel.selectedTabName = "Timeline" }
-                EstimateTabComponent().tag(1)
+                EstimateTabComponent(isFromJob: true).tag(1)
                     .onAppear { tabSelectionViewModel.selectedTabName = "Estimates" }
-                InvoiceTabComponent().tag(2)
+                InvoiceTabComponent(isFromJob: true).tag(2)
                     .onAppear { tabSelectionViewModel.selectedTabName = "Invoices" }
 
                 // Display content based on moreSelectedOption
                 ForEach(moreOptions.indices, id: \.self) { index in
                     Group {
                         switch moreOptions[index] {
-                        case "Jobs":
-                            JobsTabsComponent()
                         case "Work Orders":
                             WOTabsComponent()
                         case "Requests":
                             RequestsTabsComponent()
-                        case "Post Inspection":
-                            PITabsComponent()
+                        case "Inspection":
+                            PITabsComponent(isFromJob: true)
                         case "Payments":
                             PaymentTabsComponent()
                         case "Shopping List":
                             ShoppingListTabsComponent()
                         case "Expenses":
-                            ExpenseTabsComponent()
+                            ExpenseTabsComponent(isFromJob: true)
                         case "Service Addresses":
                             ServiceAddressTabComponent()
                         case "Billing Addresses":
@@ -152,37 +145,8 @@ struct CRMRootController: View {
     }
 }
 
-struct TabBarButton: View {
-    var title: String
-    var isActive: Bool
-    var showDropdownIcon: Bool // New parameter for showing the dropdown icon
-    var action: () -> Void
 
-    var body: some View {
-        Button(action: action) {
-            VStack(spacing: 4) {
-                HStack {
-                    Text(title)
-                        .font(.system(size: 14 * iPadMultiplier))
-                        .fontWeight(isActive ? .bold : .regular)
-                        .foregroundColor(isActive ? Color(hexString: "#F21314") : Color(hexString: "#656C73"))
-
-                    if showDropdownIcon {
-                        Image(systemName: "chevron.down") // Dropdown icon for "More" tab
-                            .font(.system(size: 12 * iPadMultiplier))
-                            .foregroundColor(isActive ? Color(hexString: "#F21314") : Color(hexString: "#656C73"))
-                    }
-                }
-
-                Rectangle()
-                    .fill(isActive ? Color(hexString: "#F21314") : Color.clear)
-                    .frame(height: 2 * iPadMultiplier)
-            }
-        }
-    }
-}
-
-struct CRERootContentView: View {
+struct JobsRootContentView: View {
     var body: some View {
         CRMRootController()
             .background(Color(UIColor.systemBackground))
@@ -190,7 +154,7 @@ struct CRERootContentView: View {
     }
 }
 
-struct CRERoot_ContentView_Previews: PreviewProvider {
+struct JobsRoot_ContentView_Previews: PreviewProvider {
     static var previews: some View {
         CRERootContentView()
             .previewDevice("iPhone 13 Pro")

@@ -1,13 +1,13 @@
 //
-//  ServiceAddressHeaderView.swift
+//  JobsHeaderView.swift
 //  Main_CRM
 //
-//  Created by Mukesh Behera on 04/11/24.
+//  Created by Mukesh Behera on 08/11/24.
 //
 
 import SwiftUI
 
-struct ServiceAddressHeaderView: View {
+struct JobsHeaderView: View {
     
     @Binding var selectedTabName: String
     
@@ -17,16 +17,12 @@ struct ServiceAddressHeaderView: View {
             // Top Row: Profile Image and User Info
             HStack(alignment: .top, spacing: 18 * iPadMultiplier) {
                 // Profile with edit icon
-                ProfileImageView(imageName: "preview_img", shape: .rectangular)
+                ProfileImageView(imageName: "preview_img", shape: .rectangular, isShowEdit: false)
 
                 VStack(alignment: .leading, spacing: 4 * iPadMultiplier) {
                     HStack(spacing: 10 * iPadMultiplier) {
-                        Text("874 Hannah Ave")
+                        Text("Kitchen & Light Fixing")
                             .font(Font.custom(FontBook.Semibold.rawValue, size: 16 * iPadMultiplier))
-//                        ic_map
-                        Image("ic_map")
-                            .foregroundColor(Color(hexString: "#3F464B"))
-                            .font(.system(size: 18 * iPadMultiplier))
                         
 //                        RoundedBorderChip(text: "Residential", color: Color(hexString: "#5ED5A8"))
                         
@@ -49,29 +45,38 @@ struct ServiceAddressHeaderView: View {
                     Text("Winter Park, FL  34747")
                         .font(Font.custom(FontBook.Regular.rawValue, size: 12 * iPadMultiplier))
                         .foregroundColor(Color(hexString: "#656C73"))
-                    HStack {
-                        ContactOption(iconName: "justin_profile_icon", text: "Owner", rightIconName: "ic_down_dropdown", shape: .circular,badgeNumber: 1, action: {
-                            print("")
-                        })
+                    VStack(alignment: .leading,spacing: 5) {
+                        HStack(spacing: 5) {
+                            ContactOption(iconName: "justin_profile_icon", text: "Client", rightIconName: "ic_down_dropdown", shape: .circular,badgeNumber: 1, action: {
+                                print("")
+                            })
+                            
+                            ContactOption(iconName: "justin_profile_icon", text: "Assigned", rightIconName: "ic_down_dropdown", shape: .circular,badgeNumber: 6, action: {
+                                print("")
+                            })
+                            
+                        }
+                        .padding(.trailing, 14 * iPadMultiplier)
                         
-                        ContactOption(iconName: "justin_profile_icon", text: "Tenant", rightIconName: "ic_down_dropdown", shape: .circular,badgeNumber: 6, action: {
-                            print("")
-                        })
-                        
+                        HStack(spacing: 5) {
+                            ContactOption(iconName: "preview_img", text: "Subs", rightIconName: "ic_down_dropdown", shape: .rectangular,badgeNumber: 6, action: {
+                                print("")
+                            })
+                            
+                            ContactOption(iconName: "justin_profile_icon", text: "Apr. 12th, 2024", shape: .circular,action: {
+                                print("")
+                            })
+                            
+                        }
+                        .padding(.trailing, 14 * iPadMultiplier)
                     }
-                    .padding(.trailing, 14 * iPadMultiplier)
                     
-                    HStack {
-                        ServiceAddressNavigation(iconName: "ic_bed-fill", number: "2", isZellow: false)
-                        ServiceAddressNavigation(iconName: "ic_light_nest-multi-room", number: "6", isZellow: false)
-                        ServiceAddressNavigation(iconName: "ic_service_address_area", number: "4,245", isZellow: false)
-                        ServiceAddressNavigation(iconName: "ic_zillow", number: "k", isZellow: true)
-                    }
+                    
                 }
             }
             
 
-            MoreActionButtons(selectedTabName: $selectedTabName, titleInitial: "New")
+            MoreActionButtons(selectedTabName: $selectedTabName, titleInitial: "Add")
 
             AddActivityCommonView()
         }
@@ -80,20 +85,20 @@ struct ServiceAddressHeaderView: View {
 }
 
 
-struct ServiceAddressHeaderContentView: View {
+struct JobsHeaderContentView: View {
     var body: some View {
         @State var selectedTabName = "Timeline"
-        ServiceAddressHeaderView(selectedTabName: $selectedTabName)
+        JobsHeaderView(selectedTabName: $selectedTabName)
             .background(Color(UIColor.systemBackground))
             .edgesIgnoringSafeArea(.all)
     }
 }
 
-struct ServiceAddress_ContentView_Previews: PreviewProvider {
+struct JobsHeader_ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ServiceAddressHeaderContentView()
+        JobsHeaderContentView()
             .previewDevice("iPhone 13 Pro")
-        ServiceAddressHeaderContentView()
+        JobsHeaderContentView()
             .previewDevice("iPad Pro (12.9-inch)")
     }
 }
