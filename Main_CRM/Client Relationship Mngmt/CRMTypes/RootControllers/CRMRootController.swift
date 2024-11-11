@@ -31,7 +31,8 @@ struct CRMRootController: View {
         "Shopping List",
         "Expenses",
         "Service Addresses",
-        "Billing Addresses"
+        "Billing Addresses",
+        "Job COC"
     ]
 
     init() {
@@ -130,6 +131,8 @@ struct CRMRootController: View {
                             ServiceAddressTabComponent()
                         case "Billing Addresses":
                             BillingAddressTabComponent()
+                        case "Job COC":
+                            JobCOCTabComponent()
                         default:
                             EmptyView()
                         }

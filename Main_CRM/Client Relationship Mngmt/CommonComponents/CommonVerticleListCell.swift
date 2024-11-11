@@ -50,12 +50,13 @@ struct CommonVerticleListCell: View {
                         }
                         
                         AddressText(title: "At: ", address: verticleLists.address)
-                        if !(verticleLists.category?.info.isEmpty ?? false) {
-                            AddressText(title: verticleLists.category?.name ?? "", address: verticleLists.category?.info ?? "")
-                        }
+                        
                         RelatedText(relatedTo: verticleLists.relatedTo, onTapRelatedTo: {
                             print("related tap..")
                         })
+                        if !(verticleLists.category?.info.isEmpty ?? false) {
+                            AddressText(title: verticleLists.category?.name ?? "", address: verticleLists.category?.info ?? "")
+                        }
                         ScheduleText(schedule: verticleLists.schedule)
                         
                         if let client = verticleLists.client {
@@ -104,8 +105,23 @@ struct CommonVerticleListCell: View {
                     //                .frame(maxHeight: .infinity) // Left VStack fills available height
                     Spacer()
                     VStack(alignment: .trailing) {
-                        RoundedBorderChip(text: verticleLists.status ?? "", color: Color(hexString: verticleLists.statusColor ?? ""))
-                            .padding(.bottom, 4 * iPadMultiplier)
+                        HStack(alignment: .top,spacing: 10) {
+                            RoundedBorderChip(text: verticleLists.status ?? "", color: Color(hexString: verticleLists.statusColor ?? ""))
+                                .padding(.bottom, 4 * iPadMultiplier)
+                            if verticleLists.isShowMenu {
+                                Button(action: {
+                                    print("menu clicked")
+                                }) {
+                                    HStack {
+                                        // Icon (using system image or custom image)
+                                        Image("menu-vertical-dots-black")
+                                            .foregroundColor(Color(hexString: "#3F464B"))
+                                            .font(.system(size: 18 * iPadMultiplier))
+                                    }
+                                    
+                                }
+                            }
+                        }
                         if verticleLists.isPaymentSettled {
                             Text("Funds Settled")
                                 .font(Font.custom(FontBook.Semibold.rawValue, size: 10 * iPadMultiplier))

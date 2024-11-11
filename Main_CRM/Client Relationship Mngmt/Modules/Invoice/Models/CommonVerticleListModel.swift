@@ -32,6 +32,7 @@ struct CommonVerticleListModel: Identifiable, Decodable {
     var isMessageShow: Bool = false
     var paymentID: String?
     var isPaymentSettled: Bool = false
+    var isShowMenu: Bool = false
     
 }
 
