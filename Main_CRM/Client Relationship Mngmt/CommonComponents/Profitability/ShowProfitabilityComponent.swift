@@ -25,15 +25,15 @@ struct ProfitabilityView: View {
                         Spacer()
                         Text(isExpanded ? HideTitle : showTitle)
                             .font(Font.custom(FontBook.Semibold.rawValue, size: 12))
-                            .foregroundColor(Color(hexString: "#656C73"))
+                            .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue))
                         Image(isExpanded ? "ic_Up_dropdown" : "ic_down_dropdown")
                             .font(.subheadline)
                             .padding(.trailing, 8)
-                            .foregroundColor(Color(hexString: "#656C73"))
+                            .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue))
                         Spacer()
                     }
                     .padding(6)
-                    .background(Color(hexString: "#F0F0F0"))
+                    .background(Color(App_Colors.App_White_Gray_Color.rawValue))
                 }
                 
                 if isExpanded {
@@ -43,10 +43,10 @@ struct ProfitabilityView: View {
                 }
             }
             .padding(1)
-            .background(Color(hexString: "#FAFAFA"))
+            .background(Color(App_Colors.App_White_Color.rawValue))
             .overlay(
                 RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color(hexString: "#D2D4D6"), lineWidth: 1)
+                    .stroke(Color(App_Colors.App_Light_Gray_Color_1.rawValue), lineWidth: 1)
             )
             .cornerRadius(8)
 //        }

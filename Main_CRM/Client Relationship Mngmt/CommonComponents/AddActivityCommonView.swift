@@ -18,29 +18,29 @@ struct AddActivityCommonView: View {
                 // Action for Email
             }) {
                 Image("ic_notepad")
-                    .foregroundColor(Color(hexString: "#656C73"))
+                    .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue))
             }
 
             Button(action: {
                 // Action for Phone
             }) {
                 Image("ic_mail_envelope")
-                    .foregroundColor(Color(hexString: "#656C73"))
+                    .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue))
             }
 
             Button(action: {
                 // Action for Social
             }) {
                 Image("ic_chat_icon")
-                    .foregroundColor(Color(hexString: "#656C73"))
+                    .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue))
             }
             
             Button(action: {
                 // Action for More Actions
             }) {
                 HStack {
-                    Image("ic_phone_icon").foregroundColor(Color(hexString: "#656C73"))
-                    Image("ic_down_dropdown").foregroundColor(Color(hexString: "#656C73")) // Plus icon after the text
+                    Image("ic_phone_icon").foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue))
+                    Image("ic_down_dropdown").foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue)) // Plus icon after the text
                 }
                 .padding(10 * iPadMultiplier)
                 .cornerRadius(6 * iPadMultiplier)
@@ -49,10 +49,10 @@ struct AddActivityCommonView: View {
             .frame(height: 30 * iPadMultiplier)
             .background(
                 RoundedRectangle(cornerRadius: 12 * iPadMultiplier)
-                    .fill(Color(hexString: "#FAFAFA"))
+                    .fill(Color(App_Colors.App_White_Color.rawValue))
                     .overlay(
                         RoundedRectangle(cornerRadius: 5 * iPadMultiplier)
-                            .stroke(Color(hexString: "#D2D4D6"), lineWidth: 1)
+                            .stroke(Color(App_Colors.App_Light_Gray_Color_1.rawValue), lineWidth: 1)
                     )
             )
         }

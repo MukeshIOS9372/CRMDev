@@ -22,35 +22,35 @@ struct StatusCardView: View {
                 HStack(spacing: 0){
                     Text("\(status) - ")
                         .font(Font.custom(FontBook.Regular.rawValue, size: 14 * iPadMultiplier))
-                        .foregroundColor(Color(hexString: "#656C73"))
+                        .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue))
                     HStack(spacing: 1){
                         Text("\(progress)")
                             .font(Font.custom(FontBook.Semibold.rawValue, size: 14 * iPadMultiplier))
-                            .foregroundColor(Color(hexString: "#656C73"))
+                            .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue))
                         Text("/\(progressMax)")
                             .font(Font.custom(FontBook.Regular.rawValue, size: 14 * iPadMultiplier))
-                            .foregroundColor(Color(hexString: "#ADB1B5"))
+                            .foregroundColor(Color(App_Colors.App_Light_Gray_Color_3.rawValue))
                     }
                 }
                 Spacer()
                 Text(percentage)
                     .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
-                    .foregroundColor(Color(hexString: "#ADB1B5"))
+                    .foregroundColor(Color(App_Colors.App_Light_Gray_Color_3.rawValue))
             }
             
             // Price at the bottom
             Text(price)
                 .font(Font.custom(FontBook.Semibold.rawValue, size: 18 * iPadMultiplier))
-                .foregroundColor(Color(hexString: "#3F464B"))
+                .foregroundColor(Color(App_Colors.App_Black_Color.rawValue))
         }
         .padding(20 * iPadMultiplier)
-        .background(Color(hexString: "#FAFAFA"))
+        .background(Color(App_Colors.App_White_Color.rawValue))
         .cornerRadius(8 * iPadMultiplier)
 //        .shadow(radius: 2)
         .frame(width: 160 * iPadMultiplier, height: 90 * iPadMultiplier) // Adjust width and height as needed
         .overlay(
             RoundedRectangle(cornerRadius: 8 * iPadMultiplier)
-                .stroke((Color(hexString: "#F0F0F0")), lineWidth: 1 * iPadMultiplier)
+                .stroke((Color(App_Colors.App_White_Gray_Color.rawValue)), lineWidth: 1 * iPadMultiplier)
         )
     }
 }

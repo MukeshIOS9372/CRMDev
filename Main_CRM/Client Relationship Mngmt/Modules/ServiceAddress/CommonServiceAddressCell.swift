@@ -44,11 +44,11 @@ struct CommonServiceAddressCell: View {
                     VStack(alignment: .leading){
                         
                         Text(title ?? "")
-                            .foregroundColor(Color(hexString: "#3B82F6"))
+                            .foregroundColor(Color(App_Colors.App_Blue_Color.rawValue))
                             .font(Font.custom(FontBook.Semibold.rawValue, size: 16 * iPadMultiplier))
                         Spacer().frame(height: 5)
                         Text(address ?? "")
-                            .foregroundColor(Color(hexString: "#656C73"))
+                            .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue))
                             .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
                             .lineLimit(2)
                     }
@@ -59,7 +59,7 @@ struct CommonServiceAddressCell: View {
                     }) {
                         HStack {
                             Image("menu-vertical-dots-black")
-                                .foregroundColor(Color(hexString: "#3F464B"))
+                                .foregroundColor(Color(App_Colors.App_Black_Color.rawValue))
                                 .font(.system(size: 18 * iPadMultiplier))
                         }
                         
@@ -89,7 +89,7 @@ struct CommonServiceAddressCell: View {
         .cornerRadius(8 * iPadMultiplier)
         .overlay(
             RoundedRectangle(cornerRadius: 8 * iPadMultiplier)
-                .stroke(Color(hexString: "#F0F0F0"), lineWidth: 1 * iPadMultiplier)//"#3F464B"  "#F0F0F0"
+                .stroke(Color(App_Colors.App_White_Gray_Color.rawValue), lineWidth: 1 * iPadMultiplier)//"#3F464B"  "#F0F0F0"
         )
     }
 }
@@ -121,11 +121,11 @@ struct ShowCodeServiceAddress: View {
         VStack {
             Text(heading)
                 .font(Font.custom(FontBook.Regular.rawValue, size: 12 * iPadMultiplier))
-                .foregroundColor(Color(hexString: "#ADB1B5"))
+                .foregroundColor(Color(App_Colors.App_Light_Gray_Color_3.rawValue))
             Spacer().frame(height: 6 * iPadMultiplier)
             Text(value)
                 .font(Font.custom(FontBook.Semibold.rawValue, size: 14 * iPadMultiplier))
-                .foregroundColor(Color(hexString: "#656C73")) // Hex #656C73
+                .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue)) // Hex #656C73
         }
         .frame(width: UIScreen.main.bounds.width / 2 - 20) // Half screen width minus padding
     }

@@ -14,7 +14,7 @@ struct CircularProgressView: View {
     var body: some View {
         ZStack {
             Rectangle()
-                .fill(Color(hexString: "#FAFAFA"))
+                .fill(Color(App_Colors.App_White_Color.rawValue))
                 .cornerRadius(8 * iPadMultiplier)
                 .frame(width: 90 * iPadMultiplier, height: 90 * iPadMultiplier)
                 .overlay(

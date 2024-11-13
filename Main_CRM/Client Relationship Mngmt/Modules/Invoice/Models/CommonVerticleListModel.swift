@@ -9,12 +9,12 @@ import Foundation
 
 struct CommonVerticleListModel: Identifiable, Decodable {
     var id: String
-    var itemName: String = ""
+    var itemName: String = "Kitchen Light Fixing"
     var title: String = ""
     var cartItemsCount: Int?
     var relatedTo: String = ""
     var address: String = ""
-    var schedule: String = ""
+    var schedule: Client?
     var client: ContactInfo?
     var horizontalMembers: [HorizontalMembersView]?
     var progress: Float?
@@ -33,7 +33,7 @@ struct CommonVerticleListModel: Identifiable, Decodable {
     var paymentID: String?
     var isPaymentSettled: Bool = false
     var isShowMenu: Bool = false
-    
+    var IsShowFlag: Bool = false
 }
 
 struct Client: Decodable {

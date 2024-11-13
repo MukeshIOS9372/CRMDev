@@ -20,13 +20,13 @@ struct MoreActionButtons: View {
                 HStack {
                     Text("\(titleInitial) \(selectedTabName)") // Text for the first button
                         .font(Font.custom(FontBook.Semibold.rawValue, size: 14 * iPadMultiplier))
-                        .foregroundColor(Color(hexString: "#3B82F6"))
+                        .foregroundColor(Color(App_Colors.App_Blue_Color.rawValue))
                     Image(systemName: "plus") // Plus icon after the text
-                        .foregroundColor(Color(hexString: "#3B82F6"))
+                        .foregroundColor(Color(App_Colors.App_Blue_Color.rawValue))
                 }
                 .padding(10 * iPadMultiplier)
                 .frame(maxWidth: .infinity)
-                .background(Color(hexString: "#DBEAFE"))
+                .background(Color(App_Colors.App_Light_Blue_Color.rawValue))
                 .cornerRadius(6 * iPadMultiplier)
             }
             .frame(height: 68 * iPadMultiplier)
@@ -43,7 +43,7 @@ struct MoreActionButtons: View {
                 }
                 .padding(10 * iPadMultiplier)
                 .frame(maxWidth: .infinity)
-                .background(Color(hexString: "#3B82F6"))
+                .background(Color(App_Colors.App_Blue_Color.rawValue))
                 .cornerRadius(6 * iPadMultiplier)
                     
             }

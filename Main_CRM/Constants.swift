@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 let isIPad = UIDevice.current.userInterfaceIdiom == .pad
 let iPadMultiplier: CGFloat = isIPad ? 1.618 : 1.0
@@ -26,8 +27,6 @@ enum FontBook: String {
     }
 }
 
-import Foundation
-import SwiftUI
 
 extension Color {
     init(hexString hex: String) {
@@ -55,3 +54,36 @@ extension Color {
         )
     }
 }
+
+enum App_Colors: String {
+    case App_Dark_Black_Color = "App_Dark_Black_Color"
+    case App_Black_Color = "App_Black_Color"
+    case App_Light_Blue_Color = "App_Light_Blue_Color"
+    case App_Blue_Color = "App_Blue_Color"
+    case App_Light_Gray_Color_1 = "App_Light_Gray_Color_1"
+    case App_Light_Gray_Color_2 = "App_Light_Gray_Color_2"
+    case App_Light_Gray_Color_3 = "App_Light_Gray_Color_3"
+    case App_Light_Gray_Color_4 = "App_Light_Gray_Color_4"
+    case App_Light_Green_Color = "App_Light_Green_Color"
+    case App_Orange_Color = "App_Orange_Color"
+    case App_Red_Color_1 = "App_Red_Color_1"
+    case App_Red_Color = "App_Red_Color"
+    case App_White_Color = "App_White_Color"
+    case App_White_Gray_Color = "App_White_Gray_Color"
+}
+
+/*
+ 3F464B App_Black_Color
+ 5ED5A8 App_Light_Green_Color
+ 656C73 App_Light_Gray_Color_2
+ FAFAFA App_White_Color
+ F0F0F0 App_White_Gray_Color
+ D2D4D6 App_Light_Gray_Color_1
+ E74C3C App_Red_Color_1
+ 3B82F6  App_Blue_Color
+ ADB1B5  App_Light_Gray_Color_3
+ FF9800 App_Orange_Color
+ D1D5DB App_Light_Gray_Color_4
+ DBEAFE. App_Light_Blue_Color
+ F21314 App_Red_Color
+ */

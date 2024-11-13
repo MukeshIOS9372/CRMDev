@@ -19,28 +19,28 @@ struct StatusesCardView: View {
             HStack {
                 Text(title)
                     .font(Font.custom(FontBook.Regular.rawValue, size: 16 * iPadMultiplier))
-                    .foregroundColor(Color(hexString: "#656C73"))
+                    .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue))
                 
                 Spacer()
                 
                 Text("\(progress)%")
                     .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
-                    .foregroundColor(Color(hexString: "#5ED5A8"))
+                    .foregroundColor(Color(App_Colors.App_Light_Green_Color.rawValue))
             }
             
             // Fraction (Numerator / Denominator)
             HStack(alignment: .firstTextBaseline, spacing: 2) {
                 Text("\(numerator)")
                     .font(Font.custom(FontBook.Semibold.rawValue, size: 24 * iPadMultiplier))
-                    .foregroundColor(Color(hexString: "#3F464B"))
+                    .foregroundColor(Color(App_Colors.App_Black_Color.rawValue))
                 
                 Text("/\(denominator)")
                     .font(Font.custom(FontBook.Semibold.rawValue, size: 14 * iPadMultiplier))
-                    .foregroundColor(Color(hexString: "#ADB1B5"))
+                    .foregroundColor(Color(App_Colors.App_Light_Gray_Color_3.rawValue))
             }
         }
         .padding(20 * iPadMultiplier)
-        .background(Color(hexString: "#FAFAFA"))
+        .background(Color(App_Colors.App_White_Color.rawValue))
         .cornerRadius(8 * iPadMultiplier)
 //        .shadow(radius: 2)
         .frame(width: 160 * iPadMultiplier, height: 90 * iPadMultiplier) // Adjust width and height as needed

@@ -22,7 +22,7 @@ struct LimitedHorizontalListView: View {
                         .clipShape(Circle())
                     Text(i.title)
                         .font(Font.custom(FontBook.Regular.rawValue, size: 12 * iPadMultiplier))
-                        .foregroundColor(Color(hexString: "#656C73"))
+                        .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue))
                 }
 
                 // Add dot and spacing if not the last visible item
@@ -30,7 +30,7 @@ struct LimitedHorizontalListView: View {
 //                    Spacer()
 //                        .frame(width: 2)
                     Circle()
-                        .fill(Color(hexString: "#ADB1B5")) // Hex #ADB1B5
+                        .fill(Color(App_Colors.App_Light_Gray_Color_3.rawValue)) // Hex #ADB1B5
                         .frame(width: 2.5, height: 2.5)
 //                    Spacer()
 //                        .frame(width: 2)
@@ -43,11 +43,11 @@ struct LimitedHorizontalListView: View {
                     .frame(width: 2)
                 ZStack {
                     Circle()
-                        .fill(Color(hexString: "#D1D5DB")) // Hex #D1D5DB
+                        .fill(Color(App_Colors.App_Light_Gray_Color_4.rawValue)) // Hex #D1D5DB
                         .frame(width: 20, height: 20)
                     
                     Text("+\(items.count - visibleLimit)")
-                        .foregroundColor(Color(hexString: "#656C73")) // Hex #656C73
+                        .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue)) // Hex #656C73
                         .font(Font.custom(FontBook.Regular.rawValue, size: 10 * iPadMultiplier))
                         .padding(2)
                 }
@@ -82,7 +82,7 @@ struct LimitedHorizontalListViewListItem: Identifiable, Decodable {
         AnyView(
             Text(title)
                 .font(Font.custom(FontBook.Regular.rawValue, size: 5 * iPadMultiplier))
-                .foregroundColor(Color(hexString: "#656C73"))
+                .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue))
         )
     }
 }

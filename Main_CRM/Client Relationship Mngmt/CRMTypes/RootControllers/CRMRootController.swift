@@ -32,7 +32,9 @@ struct CRMRootController: View {
         "Expenses",
         "Service Addresses",
         "Billing Addresses",
-        "Job COC"
+        "Job COC",
+        "Tasks",
+        "Statement"
     ]
 
     init() {
@@ -133,6 +135,10 @@ struct CRMRootController: View {
                             BillingAddressTabComponent()
                         case "Job COC":
                             JobCOCTabComponent()
+                        case "Tasks":
+                            TasksTabComponent()
+                        case "Statement":
+                            StatementTabsComponent()
                         default:
                             EmptyView()
                         }
@@ -168,17 +174,17 @@ struct TabBarButton: View {
                     Text(title)
                         .font(.system(size: 14 * iPadMultiplier))
                         .fontWeight(isActive ? .bold : .regular)
-                        .foregroundColor(isActive ? Color(hexString: "#F21314") : Color(hexString: "#656C73"))
+                        .foregroundColor(isActive ? Color(App_Colors.App_Red_Color.rawValue) : Color(App_Colors.App_Light_Gray_Color_2.rawValue))
 
                     if showDropdownIcon {
                         Image(systemName: "chevron.down") // Dropdown icon for "More" tab
                             .font(.system(size: 12 * iPadMultiplier))
-                            .foregroundColor(isActive ? Color(hexString: "#F21314") : Color(hexString: "#656C73"))
+                            .foregroundColor(isActive ? Color(App_Colors.App_Red_Color.rawValue) : Color(App_Colors.App_Light_Gray_Color_2.rawValue))
                     }
                 }
 
                 Rectangle()
-                    .fill(isActive ? Color(hexString: "#F21314") : Color.clear)
+                    .fill(isActive ? Color(App_Colors.App_Red_Color.rawValue) : Color.clear)
                     .frame(height: 2 * iPadMultiplier)
             }
         }

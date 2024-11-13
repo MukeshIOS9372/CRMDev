@@ -36,6 +36,13 @@ struct MainRootView: View {
                         .cornerRadius(8)
                 }
                 
+                NavigationLink(destination: OpportunityAddEditView()) {
+                    Text("Opportunity")
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                }
             }
         }
     }

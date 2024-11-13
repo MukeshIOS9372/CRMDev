@@ -56,11 +56,8 @@ struct TasksTabComponent: View {
                     title: "Mukesh"
                 )
             ]
-            let profitabilityArr = [
-                ProfitabilityItem(title: "Gross Profit", type: .grossProfit, grossProfitPercent: "35.65%", grossProfitAmount: "$151,663.22",rateAndCost: RateAndCost(rate: "$14,641.85", cost: "$14,641.85"), toolTipText: "Click on tooltip", isEditable: false),
-                ProfitabilityItem(title: "Line Items", type: .generalItem, grossProfitPercent: "$14,641.85", grossProfitAmount: "$151,663.22", rateAndCost: RateAndCost(rate: "$14,641.85", cost: "$14,641.85"), toolTipText: "Click on tooltip", isEditable: false),
-                ProfitabilityItem(title: "Material Cost", type: .itemCost, grossProfitPercent: "35.65%", grossProfitAmount: "$151,663.22",rateAndCost: RateAndCost(rate: "$14,641.85", cost: "$14,641.85"), toolTipText: "Click on tooltip", isEditable: true)]
-            let verticleList = [CommonVerticleListModel(id: "1", itemName: "INV- 00000212", title: "Ceiling Fan Recoiling Work", address: "123 Main Street, Texas 451245", horizontalMembers: [HorizontalMembersView(title: "Assigned To : ", membersArr: assignedMembersArr)], status: "Overdue", statusColor: "#E74C3C", amount: "$300.00", timeAgo: "3 Months ago", profitabilityArr: profitabilityArr)]
+            
+            let verticleList = [CommonVerticleListModel(id: "1", itemName: "Kitchen Light Fixing", title: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",schedule: Client(name: "Due Date: ", info: "Nov. 4th, 2023 @12:45 PM"),client: ContactInfo(imgName: "justin_profile_icon", title: "Mukesh"), horizontalMembers: [HorizontalMembersView(title: "Assigned To : ", membersArr: assignedMembersArr)], status: "Complete", statusColor: "#5ED5A8", timeAgo: "3 Months ago", IsShowFlag: true)]
             TasksListsView(verticleLists: verticleList)
         }
         .padding(12 * iPadMultiplier)

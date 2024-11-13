@@ -25,7 +25,7 @@ struct ServiceAddressHeaderView: View {
                             .font(Font.custom(FontBook.Semibold.rawValue, size: 16 * iPadMultiplier))
 //                        ic_map
                         Image("ic_map")
-                            .foregroundColor(Color(hexString: "#3F464B"))
+                            .foregroundColor(Color(App_Colors.App_Black_Color.rawValue))
                             .font(.system(size: 18 * iPadMultiplier))
                         
 //                        RoundedBorderChip(text: "Residential", color: Color(hexString: "#5ED5A8"))
@@ -38,7 +38,7 @@ struct ServiceAddressHeaderView: View {
                             HStack {
                                 // Icon (using system image or custom image)
                                 Image("menu-vertical-dots-black")
-                                    .foregroundColor(Color(hexString: "#3F464B"))
+                                    .foregroundColor(Color(App_Colors.App_Black_Color.rawValue))
                                     .font(.system(size: 18 * iPadMultiplier))
                             }
                             
@@ -48,7 +48,7 @@ struct ServiceAddressHeaderView: View {
                     .padding(.top, 20 * iPadMultiplier)
                     Text("Winter Park, FL  34747")
                         .font(Font.custom(FontBook.Regular.rawValue, size: 12 * iPadMultiplier))
-                        .foregroundColor(Color(hexString: "#656C73"))
+                        .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue))
                     HStack {
                         ContactOption(iconName: "justin_profile_icon", text: "Owner", rightIconName: "ic_down_dropdown", shape: .circular,badgeNumber: 1, action: {
                             print("")

@@ -52,7 +52,7 @@ struct TabsTitleWithCountView: View {
 //                        HStack {
 //                            // Icon (using system image or custom image)
 //                            Image("menu-vertical-dots-black")
-//                                .foregroundColor(Color(hexString: "#3F464B"))
+//                                .foregroundColor(Color(App_Colors.App_Black_Color.rawValue))
 //                                .font(.system(size: 18 * iPadMultiplier))
 //                        }
 //                        

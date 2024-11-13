@@ -21,11 +21,11 @@ struct GrossProfitCardView: View {
             // Title with clickable Info icon
             HStack(spacing: 4 * iPadMultiplier) {
                 Circle()
-                    .fill(Color(hexString: "#5ED5A8"))
+                    .fill(Color(App_Colors.App_Light_Green_Color.rawValue))
                     .frame(width: 12 * iPadMultiplier, height: 12 * iPadMultiplier)
                 Text(title ?? "")
                     .font(Font.custom(FontBook.Regular.rawValue, size: 14 * iPadMultiplier))
-                    .foregroundColor(Color(hexString: "#656C73"))
+                    .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue))
                     
                 
                 // Question mark icon with tooltip
@@ -47,11 +47,11 @@ struct GrossProfitCardView: View {
             VStack(spacing: 4 * iPadMultiplier) {
                 Text(amount ?? "")
                     .font(Font.custom(FontBook.Bold.rawValue, size: 18 * iPadMultiplier))
-                    .foregroundColor(Color(hexString: "#3F464B"))
+                    .foregroundColor(Color(App_Colors.App_Black_Color.rawValue))
                 
                 Text(percentage ?? "")
                     .font(Font.custom(FontBook.Bold.rawValue, size: 14 * iPadMultiplier))
-                    .foregroundColor(Color(hexString: "#3F464B"))
+                    .foregroundColor(Color(App_Colors.App_Black_Color.rawValue))
             }
 //            .frame(maxWidth: .infinity)
         }
@@ -92,11 +92,11 @@ struct LineItemsView: View {
             // Title with info icon
             HStack(spacing: 5 * iPadMultiplier) {
                 Circle()
-                    .fill(Color(hexString: "#3B82F6"))
+                    .fill(Color(App_Colors.App_Blue_Color.rawValue))
                     .frame(width: 12 * iPadMultiplier, height: 12 * iPadMultiplier)
                 Text(title)
                     .font(Font.custom(FontBook.Regular.rawValue, size: 14 * iPadMultiplier))
-                    .foregroundColor(Color(hexString: "#656C73"))
+                    .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue))
                 
                 // Question mark icon with tooltip
                 Button(action: {
@@ -104,7 +104,7 @@ struct LineItemsView: View {
                 }) {
                     Image(systemName: "questionmark.circle")
 //                        .font(.caption2)
-                        .foregroundColor(Color(hexString: "#656C73"))
+                        .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue))
                 }
                 .popover(isPresented: $showTooltip) {
                     Text("This is the gross profit after expenses.")
@@ -117,16 +117,16 @@ struct LineItemsView: View {
             VStack(spacing: 4 * iPadMultiplier) {
                 Text("\(firstAmount) - \(secondAmount)")
                     .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
-                    .foregroundColor(Color(hexString: "#656C73"))
+                    .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue))
                 
                 // Gross Profit
                 HStack(spacing: 4 * iPadMultiplier){
                     Text("\(grossProfit)")
                         .font(Font.custom(FontBook.Semibold.rawValue, size: 14 * iPadMultiplier))
-                        .foregroundColor(Color(hexString: "#5ED5A8"))
+                        .foregroundColor(Color(App_Colors.App_Light_Green_Color.rawValue))
                     Text("Gross Profit")
                         .font(Font.custom(FontBook.Regular.rawValue, size: 10 * iPadMultiplier))
-                        .foregroundColor(Color(hexString: "#656C73"))
+                        .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue))
                 }
             }
             .frame(maxWidth: .infinity)
@@ -134,7 +134,7 @@ struct LineItemsView: View {
         .padding(10 * iPadMultiplier)
         .padding(.leading,6 * iPadMultiplier)
         .padding(.trailing,6 * iPadMultiplier)
-        .background(Color(hexString: "#FAFAFA"))
+        .background(Color(App_Colors.App_White_Color.rawValue))
         .cornerRadius(10 * iPadMultiplier)
 //        .shadow(color: Color.black.opacity(0.1), radius: 3, x: 0, y: 1)
         .frame(width: (UIScreen.main.bounds.width / 2) - 34)
@@ -177,7 +177,7 @@ struct CostsView: View {
             HStack(alignment: .top,spacing: 5 * iPadMultiplier) {
                 Text(title ?? "")
                     .font(Font.custom(FontBook.Regular.rawValue, size: 14 * iPadMultiplier))
-                    .foregroundColor(Color(hexString: "#656C73"))
+                    .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue))
                 
                 // Question mark icon with tooltip
                 Button(action: {
@@ -185,7 +185,7 @@ struct CostsView: View {
                 }) {
                     Image(systemName: "questionmark.circle")
 //                        .font(.caption2)
-                        .foregroundColor(Color(hexString: "#656C73"))
+                        .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue))
                 }
                 .popover(isPresented: $showTooltip) {
                     Text("This is the gross profit after expenses.")
@@ -198,7 +198,7 @@ struct CostsView: View {
                         onSelect(.itemCost, .edit)
                     }) {
                         Image("editInWhite")
-                            .foregroundColor(Color(hexString: "#656C73"))
+                            .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue))
                     }
                     .frame(width: 18 * iPadMultiplier, height: 18 * iPadMultiplier, alignment: .trailing)
                 }
@@ -207,13 +207,13 @@ struct CostsView: View {
             // Amounts
             Text(amount ?? "")
                 .font(Font.custom(FontBook.Semibold.rawValue, size: 14))
-                .foregroundColor(Color(hexString: "#656C73"))
+                .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue))
             
         }
         .padding(10 * iPadMultiplier)
         .padding(.leading,2 * iPadMultiplier)
         .padding(.trailing,2 * iPadMultiplier)
-        .background(Color(hexString: "#FAFAFA"))
+        .background(Color(App_Colors.App_White_Color.rawValue))
         .cornerRadius(10 * iPadMultiplier)
 //        .shadow(color: Color.black.opacity(0.1), radius: 3, x: 0, y: 1)
         .frame(width: (UIScreen.main.bounds.width / 2) - 34)

@@ -24,7 +24,7 @@ struct ClientRelationProfileHeader: View {
                         Text("Justin Smith")
                             .font(Font.custom(FontBook.BoldIT.rawValue, size: 20 * iPadMultiplier))
                         
-                        RoundedBorderChip(text: "Residential", color: Color(hexString: "#5ED5A8"))
+                        RoundedBorderChip(text: "Residential", color: Color(App_Colors.App_Light_Green_Color.rawValue))
                         
                         Spacer()
                         
@@ -34,7 +34,7 @@ struct ClientRelationProfileHeader: View {
                             HStack {
                                 // Icon (using system image or custom image)
                                 Image("menu-vertical-dots-black")
-                                    .foregroundColor(Color(hexString: "#3F464B"))
+                                    .foregroundColor(Color(App_Colors.App_Black_Color.rawValue))
                                     .font(.system(size: 18 * iPadMultiplier))
                             }
                             

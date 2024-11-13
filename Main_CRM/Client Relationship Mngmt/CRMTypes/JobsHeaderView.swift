@@ -34,7 +34,7 @@ struct JobsHeaderView: View {
                             HStack {
                                 // Icon (using system image or custom image)
                                 Image("menu-vertical-dots-black")
-                                    .foregroundColor(Color(hexString: "#3F464B"))
+                                    .foregroundColor(Color(App_Colors.App_Black_Color.rawValue))
                                     .font(.system(size: 18 * iPadMultiplier))
                             }
                             
@@ -44,7 +44,7 @@ struct JobsHeaderView: View {
                     .padding(.top, 20 * iPadMultiplier)
                     Text("Winter Park, FL  34747")
                         .font(Font.custom(FontBook.Regular.rawValue, size: 12 * iPadMultiplier))
-                        .foregroundColor(Color(hexString: "#656C73"))
+                        .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue))
                     VStack(alignment: .leading,spacing: 5) {
                         HStack(spacing: 5) {
                             ContactOption(iconName: "justin_profile_icon", text: "Client", rightIconName: "ic_down_dropdown", shape: .circular,badgeNumber: 1, action: {

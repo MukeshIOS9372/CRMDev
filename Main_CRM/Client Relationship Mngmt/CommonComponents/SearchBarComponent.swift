@@ -32,11 +32,11 @@ struct SearchAndFilters: View {
             )
             .padding(15 * iPadMultiplier)
             .padding(.leading, 24 * iPadMultiplier)
-            .background(RoundedRectangle(cornerRadius: 8 * iPadMultiplier).stroke((Color(hexString: "#ADB1B5")), lineWidth: 1 * iPadMultiplier))
+            .background(RoundedRectangle(cornerRadius: 8 * iPadMultiplier).stroke((Color(App_Colors.App_Light_Gray_Color_3.rawValue)), lineWidth: 1 * iPadMultiplier))
             .overlay(
                 HStack {
                     Image(systemName: "magnifyingglass")
-                        .foregroundColor(Color(hexString: "#656C73"))
+                        .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue))
                         .frame(width: 30 * iPadMultiplier, height: 30 * iPadMultiplier)
                         .padding(.leading, 5 * iPadMultiplier)
                     Spacer()
@@ -72,15 +72,15 @@ struct ActionableButtonWithState: View {
             Image(iconName)
                 .resizable()
                 .frame(width: 20 * iPadMultiplier, height: 20 * iPadMultiplier)
-                .foregroundColor(isActive ? (Color(hexString: "#3B82F6")) : (Color(hexString: "#656C73")))
+                .foregroundColor(isActive ? (Color(App_Colors.App_Blue_Color.rawValue)) : (Color(App_Colors.App_Light_Gray_Color_2.rawValue)))
                 .padding(10 * iPadMultiplier)
         }
-        .background(type == .menu ? Color.white : (isActive ? Color(hexString: "#DBEAFE") : Color(hexString: "#FAFAFA")))
+        .background(type == .menu ? Color.white : (isActive ? Color(App_Colors.App_Light_Blue_Color.rawValue) : Color(App_Colors.App_White_Color.rawValue)))
         
         .cornerRadius(8 * iPadMultiplier)
         .overlay(
             RoundedRectangle(cornerRadius: 8 * iPadMultiplier)
-                .stroke(type == .menu ? Color.white : (isActive ? Color(hexString: "#3B82F6") : Color(hexString: "#F0F0F0")), lineWidth: 1 * iPadMultiplier)
+                .stroke(type == .menu ? Color.white : (isActive ? Color(App_Colors.App_Blue_Color.rawValue) : Color(App_Colors.App_White_Gray_Color.rawValue)), lineWidth: 1 * iPadMultiplier)
         )
     }
 }

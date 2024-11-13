@@ -19,7 +19,7 @@ struct ServiceAddressNavigation: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 16 * iPadMultiplier, height: 16 * iPadMultiplier)
-                .foregroundColor(Color(hexString: "#656C73"))
+                .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue))
             
             // Text
             if isZellow {
@@ -27,10 +27,10 @@ struct ServiceAddressNavigation: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 16 * iPadMultiplier, height: 16 * iPadMultiplier)
-                    .foregroundColor(Color(hexString: "#3B82F6"))
+                    .foregroundColor(Color(App_Colors.App_Blue_Color.rawValue))
             } else {
                 Text(number)
-                    .foregroundColor(Color(hexString: "#3F464B"))
+                    .foregroundColor(Color(App_Colors.App_Black_Color.rawValue))
                     .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
             }
         }
@@ -38,11 +38,11 @@ struct ServiceAddressNavigation: View {
         .padding(.vertical, 5 * iPadMultiplier)
         .background(
             RoundedRectangle(cornerRadius: 6 * iPadMultiplier)
-                .fill(Color(hexString: "#FAFAFA"))
+                .fill(Color(App_Colors.App_White_Color.rawValue))
             //                    .shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: 1)
 //                .overlay(
 //                    RoundedRectangle(cornerRadius: 5 * iPadMultiplier)
-//                        .stroke(Color(hexString: "#F0F0F0"), lineWidth: 1)
+//                        .stroke(Color(App_Colors.App_White_Gray_Color.rawValue), lineWidth: 1)
 //                )
         )
     }
