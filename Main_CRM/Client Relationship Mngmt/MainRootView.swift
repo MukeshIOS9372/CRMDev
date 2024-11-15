@@ -44,6 +44,14 @@ struct MainRootView: View {
                         .cornerRadius(8)
                 }
                 
+                NavigationLink(destination: OpportunityPipeLineRootVC()) {
+                    Text("Pipeline Details")
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                }
+                
                 NavigationLink(destination: TeamMemberFilterView()) {
                     Text("Team filter")
                         .padding()

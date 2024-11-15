@@ -34,7 +34,8 @@ struct CRMRootController: View {
         "Billing Addresses",
         "Job COC",
         "Tasks",
-        "Statement"
+        "Statement",
+        "Contacts"
     ]
 
     init() {
@@ -139,6 +140,8 @@ struct CRMRootController: View {
                             TasksTabComponent()
                         case "Statement":
                             StatementTabsComponent()
+                        case "Contacts":
+                            ContactsTabComponents()
                         default:
                             EmptyView()
                         }
