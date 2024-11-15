@@ -113,7 +113,7 @@ struct CommonVerticleListCell: View {
                     //                .frame(maxHeight: .infinity) // Left VStack fills available height
                     Spacer()
                     VStack(alignment: .trailing) {
-                        HStack(alignment: .top,spacing: 10) {
+                        HStack(alignment: .top,spacing: 10 * iPadMultiplier) {
                             RoundedBorderChip(text: verticleLists.status ?? "", color: Color(hexString: verticleLists.statusColor ?? ""))
                                 .padding(.bottom, 4 * iPadMultiplier)
                             if verticleLists.isShowMenu {
@@ -260,7 +260,7 @@ struct EmailOrPhoneItemsRow: View {
     var title: String
     
     var body: some View {
-        HStack(alignment: .center, spacing: 6) {
+        HStack(alignment: .center, spacing: 6 * iPadMultiplier) {
             // Cart icon
             Image(imageName) // Assuming the cart icon image name is "ic_cart" in assets
                 .resizable()
@@ -373,7 +373,7 @@ struct PhasesAndTasksRow: View {
                 VStack(alignment: .trailing) {
                     // Display phases if not nil
                     if let phases = phases {
-                        HStack(spacing: 1) {
+                        HStack(spacing: 1 * iPadMultiplier) {
                             Text("\(phases.current)")
                                 .foregroundColor(Color(App_Colors.App_Orange_Color.rawValue))
                                 .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))

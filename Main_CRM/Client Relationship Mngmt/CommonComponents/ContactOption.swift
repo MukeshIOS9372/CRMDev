@@ -34,7 +34,7 @@ struct ContactOption: View {
                     Image(iconName)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: 25, height: 15)
+                        .frame(width: 25 * iPadMultiplier, height: 15 * iPadMultiplier)
                         .clipShape(RoundedRectangle(cornerRadius: 2 * iPadMultiplier))
                         .overlay(RoundedRectangle(cornerRadius: 2 * iPadMultiplier).stroke(Color.white, lineWidth: 1 * iPadMultiplier))
                 }
@@ -47,7 +47,7 @@ struct ContactOption: View {
                     Text("\(badgeNumber)")
                         .font(Font.custom(FontBook.Regular.rawValue, size: 10 * iPadMultiplier))
                         .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue))
-                        .frame(width: 20, height: 20)
+                        .frame(width: 20 * iPadMultiplier, height: 20 * iPadMultiplier)
                         .background(Circle().fill(Color(App_Colors.App_White_Gray_Color.rawValue)))
                 } else if !(rightIconName?.isEmpty ?? false) {
                     Image(rightIconName ?? "")
@@ -58,14 +58,14 @@ struct ContactOption: View {
             }
             .padding(.horizontal, 6 * iPadMultiplier)
             .padding(.vertical, 5 * iPadMultiplier)
-            .frame(height: 25)
+            .frame(height: 25 * iPadMultiplier)
             .background(
                 RoundedRectangle(cornerRadius: 12 * iPadMultiplier)
                     .fill(Color(App_Colors.App_White_Color.rawValue))
                 //                    .shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: 1)
                     .overlay(
                         RoundedRectangle(cornerRadius: 5 * iPadMultiplier)
-                            .stroke(Color(App_Colors.App_White_Gray_Color.rawValue), lineWidth: 1)
+                            .stroke(Color(App_Colors.App_White_Gray_Color.rawValue), lineWidth: 1 * iPadMultiplier)
                     )
             )
         }

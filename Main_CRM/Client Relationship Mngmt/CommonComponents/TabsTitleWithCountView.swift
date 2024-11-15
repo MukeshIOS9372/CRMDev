@@ -16,7 +16,7 @@ struct TabsTitleWithCountView: View {
     var actions: [Actionable]
     
     var body: some View {
-        VStack(spacing: 5) {
+        VStack(spacing: 5 * iPadMultiplier) {
             HStack{
                 Text("\(count) \(title)")
                     .font(Font.custom(FontBook.Semibold.rawValue, size: 18 * iPadMultiplier))

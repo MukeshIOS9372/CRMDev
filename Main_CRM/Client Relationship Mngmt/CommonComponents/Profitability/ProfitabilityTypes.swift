@@ -137,7 +137,7 @@ struct LineItemsView: View {
         .background(Color(App_Colors.App_White_Color.rawValue))
         .cornerRadius(10 * iPadMultiplier)
 //        .shadow(color: Color.black.opacity(0.1), radius: 3, x: 0, y: 1)
-        .frame(width: (UIScreen.main.bounds.width / 2) - 34)
+        .frame(width: (UIScreen.main.bounds.width / 2) - 34 * iPadMultiplier)
         .onTapGesture {
             onSelect(.generalItem, .cell)
         }
@@ -206,7 +206,7 @@ struct CostsView: View {
             
             // Amounts
             Text(amount ?? "")
-                .font(Font.custom(FontBook.Semibold.rawValue, size: 14))
+                .font(Font.custom(FontBook.Semibold.rawValue, size: 14 * iPadMultiplier))
                 .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue))
             
         }
@@ -216,7 +216,7 @@ struct CostsView: View {
         .background(Color(App_Colors.App_White_Color.rawValue))
         .cornerRadius(10 * iPadMultiplier)
 //        .shadow(color: Color.black.opacity(0.1), radius: 3, x: 0, y: 1)
-        .frame(width: (UIScreen.main.bounds.width / 2) - 34)
+        .frame(width: (UIScreen.main.bounds.width / 2) - 34 * iPadMultiplier)
         .onTapGesture {
             onSelect(.itemCost, .cell)
         }

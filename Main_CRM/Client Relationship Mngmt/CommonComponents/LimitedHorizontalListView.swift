@@ -16,9 +16,9 @@ struct LimitedHorizontalListView: View {
         
         HStack {
             ForEach(Array(items.enumerated()), id: \.element.id) {index, i in
-                HStack(spacing: 8) { // Adjust this spacing between image and title
+                HStack(spacing: 8 * iPadMultiplier) { // Adjust this spacing between image and title
                     Image(i.image)
-                        .frame(width: 20, height: 20) // Ensure consistent size for images
+                        .frame(width: 20 * iPadMultiplier, height: 20 * iPadMultiplier) // Ensure consistent size for images
                         .clipShape(Circle())
                     Text(i.title)
                         .font(Font.custom(FontBook.Regular.rawValue, size: 12 * iPadMultiplier))
@@ -31,7 +31,7 @@ struct LimitedHorizontalListView: View {
 //                        .frame(width: 2)
                     Circle()
                         .fill(Color(App_Colors.App_Light_Gray_Color_3.rawValue)) // Hex #ADB1B5
-                        .frame(width: 2.5, height: 2.5)
+                        .frame(width: 2.5 * iPadMultiplier, height: 2.5 * iPadMultiplier)
 //                    Spacer()
 //                        .frame(width: 2)
                 }
@@ -40,20 +40,20 @@ struct LimitedHorizontalListView: View {
             // Display the "+x" circle if there are hidden items
             if items.count > visibleLimit {
                 Spacer()
-                    .frame(width: 2)
+                    .frame(width: 2 * iPadMultiplier)
                 ZStack {
                     Circle()
                         .fill(Color(App_Colors.App_Light_Gray_Color_4.rawValue)) // Hex #D1D5DB
-                        .frame(width: 20, height: 20)
+                        .frame(width: 20 * iPadMultiplier, height: 20 * iPadMultiplier)
                     
                     Text("+\(items.count - visibleLimit)")
                         .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue)) // Hex #656C73
                         .font(Font.custom(FontBook.Regular.rawValue, size: 10 * iPadMultiplier))
-                        .padding(2)
+                        .padding(2 * iPadMultiplier)
                 }
             }
         }
-        .padding(.horizontal, 8)
+        .padding(.horizontal, 8 * iPadMultiplier)
         .frame(maxWidth: .infinity, alignment: .leading) // Align content to the leading edge
         .frame(maxHeight: .infinity)
 //        .padding(.horizontal, 8)

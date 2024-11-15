@@ -15,7 +15,7 @@ struct ProfitabilityView: View {
     
     var body: some View {
 //        if let itemsArr = profitabilityItemsArr {
-            VStack(spacing: 8) {
+            VStack(spacing: 8 * iPadMultiplier) {
                 Button(action: {
 //                    withAnimation {
                         isExpanded.toggle()
@@ -24,15 +24,15 @@ struct ProfitabilityView: View {
                     HStack {
                         Spacer()
                         Text(isExpanded ? HideTitle : showTitle)
-                            .font(Font.custom(FontBook.Semibold.rawValue, size: 12))
+                            .font(Font.custom(FontBook.Semibold.rawValue, size: 12 * iPadMultiplier))
                             .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue))
                         Image(isExpanded ? "ic_Up_dropdown" : "ic_down_dropdown")
                             .font(.subheadline)
-                            .padding(.trailing, 8)
+                            .padding(.trailing, 8 * iPadMultiplier)
                             .foregroundColor(Color(App_Colors.App_Light_Gray_Color_2.rawValue))
                         Spacer()
                     }
-                    .padding(6)
+                    .padding(6 * iPadMultiplier)
                     .background(Color(App_Colors.App_White_Gray_Color.rawValue))
                 }
                 
@@ -42,13 +42,13 @@ struct ProfitabilityView: View {
                         .animation(.smooth, value: isExpanded)
                 }
             }
-            .padding(1)
+            .padding(1 * iPadMultiplier)
             .background(Color(App_Colors.App_White_Color.rawValue))
             .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color(App_Colors.App_Light_Gray_Color_1.rawValue), lineWidth: 1)
+                RoundedRectangle(cornerRadius: 8 * iPadMultiplier)
+                    .stroke(Color(App_Colors.App_Light_Gray_Color_1.rawValue), lineWidth: 1 * iPadMultiplier)
             )
-            .cornerRadius(8)
+            .cornerRadius(8 * iPadMultiplier)
 //        }
     }
 }

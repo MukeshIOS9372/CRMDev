@@ -36,7 +36,7 @@ struct ProfileImageView: View {
                 Image(imageName)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 95, height: 72)
+                    .frame(width: 95 * iPadMultiplier, height: 72 * iPadMultiplier)
                     .clipShape(RoundedRectangle(cornerRadius: 12 * iPadMultiplier))
                     .overlay(RoundedRectangle(cornerRadius: 12 * iPadMultiplier).stroke(Color.white, lineWidth: 4 * iPadMultiplier))
             }

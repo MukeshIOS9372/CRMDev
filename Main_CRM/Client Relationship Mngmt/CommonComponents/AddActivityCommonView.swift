@@ -52,7 +52,7 @@ struct AddActivityCommonView: View {
                     .fill(Color(App_Colors.App_White_Color.rawValue))
                     .overlay(
                         RoundedRectangle(cornerRadius: 5 * iPadMultiplier)
-                            .stroke(Color(App_Colors.App_Light_Gray_Color_1.rawValue), lineWidth: 1)
+                            .stroke(Color(App_Colors.App_Light_Gray_Color_1.rawValue), lineWidth: 1 * iPadMultiplier)
                     )
             )
         }

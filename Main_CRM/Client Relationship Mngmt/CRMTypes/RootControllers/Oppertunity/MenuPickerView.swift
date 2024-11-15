@@ -13,13 +13,14 @@ struct MenuPickerView: View {
     var isShowProfileImage = false
     var isShowTrash = false
     var imageName: String?
+    @Binding var selectedOption: String
     let action: () -> Void
     
-    @State private var selectedOption = "Scheduled"
+//    @State private var selectedOption = "Scheduled"
     let options = ["Scheduled", "In Progress", "Completed"]
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 8 * iPadMultiplier) {
             if !titleText.isEmpty {
                 Text(titleText)
                     .font(Font.custom(FontBook.Semibold.rawValue, size: 14 * iPadMultiplier))
@@ -36,7 +37,7 @@ struct MenuPickerView: View {
                         Image(imageName ?? "")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: 24, height: 24)
+                            .frame(width: 24 * iPadMultiplier, height: 24 * iPadMultiplier)
                             .clipShape(Circle())
                             .overlay(Circle().stroke(Color.white, lineWidth: 4 * iPadMultiplier))
                     }
@@ -58,15 +59,15 @@ struct MenuPickerView: View {
                         Image("ic_dropdown_arrow")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: 24, height: 24)
-                            .padding(.horizontal, 5)
+                            .frame(width: 24 * iPadMultiplier, height: 24 * iPadMultiplier)
+                            .padding(.horizontal, 5 * iPadMultiplier)
                             .foregroundColor(Color(App_Colors.App_Black_Color.rawValue))
                     }
                 }
-                .padding(12)
+                .padding(12 * iPadMultiplier)
                 .background(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.gray.opacity(0.5), lineWidth: 1)
+                    RoundedRectangle(cornerRadius: 8 * iPadMultiplier)
+                        .stroke(Color(App_Colors.App_Light_Gray_Color_3.rawValue), lineWidth: 1 * iPadMultiplier)
                 )
                 
                 if isShowTrash {
@@ -75,7 +76,7 @@ struct MenuPickerView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 24 * iPadMultiplier, height: 24 * iPadMultiplier)
-                            .padding(.horizontal, 5)
+                            .padding(.horizontal, 5 * iPadMultiplier)
                             .foregroundColor(.red)
                     }
                     .buttonStyle(PlainButtonStyle())
@@ -86,8 +87,27 @@ struct MenuPickerView: View {
     }
 }
 
-#Preview {
-    MenuPickerView(isShowInfieldTitle: false, isShowProfileImage: true, imageName: "muk", action: {
-        print("jjsjs")
-    })
+
+
+
+struct MenuPickerView_Previews: PreviewProvider {
+    static var previews: some View {
+        PreviewWrapper()
+    }
+}
+
+struct MenuPickerViewWrapper: View {
+    @State private var selectedOption = "Scheduled"
+
+    var body: some View {
+        MenuPickerView(
+            isShowInfieldTitle: false,
+            isShowProfileImage: true,
+            imageName: "muk",
+            selectedOption: $selectedOption,
+            action: {
+                print("Trash icon tapped")
+            }
+        )
+    }
 }

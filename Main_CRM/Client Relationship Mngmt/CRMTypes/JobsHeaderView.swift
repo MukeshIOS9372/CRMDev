@@ -58,7 +58,7 @@ struct JobsHeaderView: View {
                         }
                         .padding(.trailing, 14 * iPadMultiplier)
                         
-                        HStack(spacing: 5) {
+                        HStack(spacing: 5 * iPadMultiplier) {
                             ContactOption(iconName: "preview_img", text: "Subs", rightIconName: "ic_down_dropdown", shape: .rectangular,badgeNumber: 6, action: {
                                 print("")
                             })

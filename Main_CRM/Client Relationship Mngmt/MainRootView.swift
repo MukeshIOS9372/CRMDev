@@ -43,6 +43,15 @@ struct MainRootView: View {
                         .foregroundColor(.white)
                         .cornerRadius(8)
                 }
+                
+                NavigationLink(destination: TeamMemberFilterView()) {
+                    Text("Team filter")
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                }
+                
             }
         }
     }

@@ -169,7 +169,7 @@ struct TabBarButton: View {
 
     var body: some View {
         Button(action: action) {
-            VStack(spacing: 4) {
+            VStack(spacing: 4 * iPadMultiplier) {
                 HStack {
                     Text(title)
                         .font(.system(size: 14 * iPadMultiplier))

@@ -17,7 +17,7 @@ struct CommonTextView: View {
     
     var body: some View {
 //        VStack {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 8 * iPadMultiplier) {
             if !titleText.isEmpty {
                 Text(titleText)
                     .font(Font.custom(FontBook.Semibold.rawValue, size: 14 * iPadMultiplier))
@@ -29,9 +29,9 @@ struct CommonTextView: View {
                     if text.isEmpty {
                         Text("Type here...")
                             .foregroundColor(.gray)
-                            .padding(.horizontal, 14)
-                            .padding(.vertical, 12)
-                            .zIndex(1)
+                            .padding(.horizontal, 14 * iPadMultiplier)
+                            .padding(.vertical, 12 * iPadMultiplier)
+                            .zIndex(1 * iPadMultiplier)
                     }
                     
                     // TextEditor
@@ -40,19 +40,19 @@ struct CommonTextView: View {
                     //                    .padding(.horizontal, 8)
                     //                    .padding(.vertical, 10)
                         .background(Color(UIColor.systemGray6))
-                        .cornerRadius(5)
+                        .cornerRadius(5 * iPadMultiplier)
                         .overlay(
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke(Color.gray.opacity(0.4), lineWidth: 1)
+                            RoundedRectangle(cornerRadius: 5 * iPadMultiplier)
+                                .stroke(Color(App_Colors.App_Light_Gray_Color_3.rawValue), lineWidth: 1 * iPadMultiplier)
                         )
                 }
                 .overlay(
                     // Resizable handle at bottom-right corner
                     Image(systemName: "arrow.up.left.and.arrow.down.right")
                         .foregroundColor(.gray)
-                        .padding(6)
+                        .padding(6 * iPadMultiplier)
                         .background(Color.white)
-                        .offset(x: -8, y: -8)
+                        .offset(x: -8 * iPadMultiplier, y: -8 * iPadMultiplier)
                         .gesture(
                             DragGesture().onChanged { value in
                                 // Increase height based on drag amount
@@ -68,7 +68,7 @@ struct CommonTextView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 24 * iPadMultiplier, height: 24 * iPadMultiplier)
-                            .padding(.horizontal, 5)
+                            .padding(.horizontal, 5 * iPadMultiplier)
                             .foregroundColor(.red)
                     }
                     .buttonStyle(PlainButtonStyle())

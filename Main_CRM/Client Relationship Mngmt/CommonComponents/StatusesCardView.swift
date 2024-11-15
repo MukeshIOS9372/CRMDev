@@ -14,7 +14,7 @@ struct StatusesCardView: View {
     var denominator: Int
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 8 * iPadMultiplier) {
             // Title and Progress
             HStack {
                 Text(title)
@@ -56,7 +56,7 @@ struct ScrollableStatusCardsView: View {
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 10) {
+            HStack(spacing: 10 * iPadMultiplier) {
                 ForEach(items, id: \.title) { item in
                     StatusesCardView(
                         title: item.title,
